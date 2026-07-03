@@ -3,959 +3,2145 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>План курса маникюра — 4 дня</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Neko Market — азиатские продукты, Челябинск</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.gstatic.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@700;800;900&display=swap">
 <style>
-:root {
-  --bg: #fdf6f0;
-  --mauve: #c26b78;
-  --rose: #e8b4b8;
-  --blush: #f9e8e8;
-  --sand: #f5e6d8;
-  --dusty: #d4878f;
-  --text: #3a2830;
-  --muted: #8a6570;
-  --white: #ffffff;
-  --accent: #e8c4c4;
-  --gold: #c9a86c;
-  --d1: #e8b4b8;
-  --d2: #b8d4e8;
-  --d3: #b8e8c8;
-  --d4: #e8d4b8;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --pink:#E91E8C;--pink2:#FF6BB5;--pink3:#FFB3D9;--pink-light:#FFF0F7;--pink-dark:#B5146C;
+  --purple:#7B2FBE;--purple-light:#F3E8FF;
+  --ink:#1A1A1A;--ink2:#4A4A4A;--ink3:#999;
+  --bg:#FFF5FB;--card:#FFF;--border:#F0D0E8;
+  --green:#1A7A46;--green-bg:#E8F5EE;--green-border:#A7F3D0;
+  --red:#DC2626;--red-bg:#FEE2E2;
+  --yellow:#D97706;--yellow-bg:#FEF3C7;
+  --radius:16px;
+  --display:'Nunito','Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --body:'Inter','Segoe UI',Roboto,Helvetica,Arial,sans-serif;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Nunito', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.7;
-  min-height: 100vh;
-}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+
+/* NAV */
+.nav{background:linear-gradient(90deg,#FF6BB5,#E91E8C,#7B2FBE);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(233,30,140,.25);}
+.nav-inner{max-width:700px;margin:0 auto;padding:0 1.25rem;height:54px;display:flex;align-items:center;gap:10px;}
+.nav-logo{font-family:var(--display);font-weight:900;font-size:19px;color:#fff;cursor:pointer;}
+.nav-tabs{display:flex;gap:3px;margin-left:auto;}
+.nav-tab{background:rgba(255,255,255,.15);border:none;color:rgba(255,255,255,.85);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;border-radius:20px;cursor:pointer;transition:all .15s;}
+.nav-tab:hover,.nav-tab.active{background:#fff;color:var(--pink);}
+
+/* PAGES */
+.page{display:none;} .page.active{display:block;}
+
+/* ADMIN BAR */
+.admin-bar{background:linear-gradient(90deg,#1A1A2E,#2D1B4E);color:#fff;padding:10px 1.25rem;display:none;}
+.admin-bar.show{display:block;}
+.admin-bar-inner{max-width:700px;margin:0 auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.admin-label{font-size:12px;font-weight:700;color:#FF6BB5;}
+.admin-btn{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25);font-size:12px;font-weight:700;padding:5px 12px;border-radius:8px;cursor:pointer;font-family:var(--body);}
+.admin-btn-red{background:rgba(220,38,38,.35);border-color:rgba(220,38,38,.5);}
+.admin-btn-logout{margin-left:auto;}
+
+/* LOGIN */
+.login-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
+.login-overlay.show{display:flex;}
+.login-box{background:#fff;border-radius:20px;padding:28px 24px;width:320px;max-width:90vw;text-align:center;}
+.login-title{font-family:var(--display);font-size:20px;font-weight:900;margin-bottom:6px;}
+.login-sub{font-size:13px;color:var(--ink3);margin-bottom:18px;}
+.login-input{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;font-size:15px;font-family:var(--body);color:var(--ink);outline:none;margin-bottom:10px;text-align:center;letter-spacing:.1em;}
+.login-input:focus{border-color:var(--pink);}
+.login-btn{width:100%;background:linear-gradient(90deg,var(--pink),var(--purple));color:#fff;border:none;border-radius:12px;padding:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--body);}
+.login-err{color:var(--red);font-size:13px;font-weight:600;margin-top:8px;display:none;}
+.login-close{background:none;border:none;color:var(--ink3);font-size:13px;cursor:pointer;margin-top:12px;font-family:var(--body);}
+
+/* PROMO BANNER */
+.promo-banner{background:linear-gradient(90deg,#7B2FBE,#E91E8C);color:#fff;padding:11px 1.25rem;}
+.promo-inner{max-width:700px;margin:0 auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.promo-text{font-size:13px;font-weight:600;flex:1;}
+.promo-text strong{display:block;font-size:14px;margin-bottom:1px;}
+.promo-timer{display:flex;gap:5px;align-items:center;flex-shrink:0;}
+.tblock{background:rgba(255,255,255,.2);border-radius:8px;padding:4px 8px;text-align:center;min-width:36px;}
+.tnum{font-family:var(--display);font-size:15px;font-weight:900;line-height:1;display:block;}
+.tlbl{font-size:9px;opacity:.8;display:block;}
+.tsep{font-size:15px;font-weight:700;opacity:.7;}
+.promo-close{background:rgba(255,255,255,.2);border:none;color:#fff;width:26px;height:26px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1;}
 
 /* HERO */
-.hero {
-  background: linear-gradient(160deg, #fdeef0 0%, #f5d8dc 50%, #ead0c8 100%);
-  padding: 50px 24px 40px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -80px; right: -80px;
-  width: 280px; height: 280px;
-  background: radial-gradient(circle, rgba(232,180,184,0.35), transparent 70%);
-  border-radius: 50%;
-}
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: -60px; left: -60px;
-  width: 220px; height: 220px;
-  background: radial-gradient(circle, rgba(201,168,108,0.2), transparent 70%);
-  border-radius: 50%;
-}
-.hero-icon { font-size: 44px; margin-bottom: 10px; display: block; animation: float 3s ease-in-out infinite; }
-@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-.hero h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(30px, 7vw, 52px);
-  color: var(--mauve);
-  line-height: 1.15;
-  margin-bottom: 8px;
-}
-.hero-sub {
-  color: var(--muted);
-  font-size: 14px;
-  font-weight: 300;
-  letter-spacing: 0.5px;
-  margin-bottom: 20px;
-}
-.hero-stats {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-top: 16px;
-}
-.stat {
-  background: rgba(255,255,255,0.7);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--accent);
-  border-radius: 12px;
-  padding: 10px 18px;
-  text-align: center;
-}
-.stat-num { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; color: var(--mauve); display: block; }
-.stat-label { font-size: 11px; color: var(--muted); font-weight: 500; }
+.hero{background:linear-gradient(160deg,#FFB3D9 0%,#E91E8C 45%,#7B2FBE 100%);color:#fff;position:relative;overflow:hidden;}
+.hero::before{content:'🌸';font-size:120px;position:absolute;right:-20px;top:-10px;opacity:.15;pointer-events:none;}
+.hero-inner{max-width:700px;margin:0 auto;padding:2.5rem 1.25rem 2rem;position:relative;}
+.hero-cat{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);color:#fff;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:5px 13px;border-radius:20px;margin-bottom:14px;}
+.hero h1{font-family:var(--display);font-size:clamp(34px,8vw,56px);font-weight:900;line-height:1.05;margin-bottom:6px;text-shadow:0 2px 12px rgba(0,0,0,.15);color:#fff;}
+.hero-sub{color:#FFE0F0;}
+.hero-desc{color:rgba(255,255,255,.9);font-size:14px;margin-bottom:20px;max-width:340px;line-height:1.6;}
+.hero-meta{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px;}
+.hchip{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);color:#fff;font-size:12px;padding:5px 11px;border-radius:10px;}
+.hero-btns{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+.btn{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;padding:11px 18px;border-radius:12px;text-decoration:none;border:none;cursor:pointer;font-family:var(--body);transition:all .15s;}
+.btn:hover{transform:translateY(-1px);opacity:.9;}
+.btn-white{background:#fff;color:var(--pink);}
+.btn-vk{background:#0077FF;color:#fff;}
+.btn-wa{background:#25D366;color:#fff;}
+.btn-pink{background:var(--pink);color:#fff;}
+.rating-row{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:12px 16px;width:fit-content;}
+.r-num{font-family:var(--display);font-size:28px;font-weight:900;line-height:1;}
+.r-stars{color:#FFE066;font-size:15px;letter-spacing:1px;}
+.r-sub{font-size:11px;color:rgba(255,255,255,.8);margin-top:2px;}
 
-/* DAY TABS */
-.tabs {
-  display: flex;
-  gap: 6px;
-  padding: 16px 16px 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-  background: var(--white);
-  border-bottom: 2px solid var(--accent);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 14px rgba(194,107,120,0.1);
-}
-.tabs::-webkit-scrollbar { display: none; }
-.tab {
-  flex-shrink: 0;
-  padding: 9px 16px;
-  border: 2px solid transparent;
-  border-bottom: none;
-  border-radius: 10px 10px 0 0;
-  font-family: 'Nunito', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all .2s;
-  white-space: nowrap;
-  background: var(--blush);
-  color: var(--muted);
-}
-.tab.active { background: var(--mauve); color: white; border-color: var(--mauve); }
-.tab:not(.active):hover { background: var(--sand); color: var(--mauve); }
+/* WRAP */
+.wrap{max-width:700px;margin:0 auto;padding:2rem 1.25rem;border-bottom:1px solid var(--border);}
+.wrap:last-child{border-bottom:none;}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pink);margin-bottom:5px;}
+.sec-title{font-family:var(--display);font-size:22px;font-weight:900;margin-bottom:16px;}
 
-/* PAGE */
-.page { display: none; animation: fadeIn .35s ease; padding: 0 0 80px; }
-.page.active { display: block; }
-@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+/* SEARCH */
+.search-wrap{position:relative;margin-bottom:12px;}
+.search-input{width:100%;border:1.5px solid var(--border);border-radius:12px;padding:10px 36px 10px 38px;font-size:14px;font-family:var(--body);color:var(--ink);background:var(--card);outline:none;transition:border-color .15s;}
+.search-input:focus{border-color:var(--pink);}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none;}
+.search-clear{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;font-size:20px;color:var(--ink3);cursor:pointer;display:none;line-height:1;padding:0;}
+.search-clear.show{display:block;}
 
-/* DAY HEADER */
-.day-header {
-  padding: 28px 20px 20px;
-  position: relative;
-  overflow: hidden;
-}
-.day-header::after {
-  content: attr(data-day);
-  position: absolute;
-  right: -10px; top: -20px;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 100px;
-  font-weight: 600;
-  opacity: 0.07;
-  color: var(--mauve);
-  pointer-events: none;
-}
-.day-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-.badge-theory { background: #fdeef0; color: var(--mauve); border: 1.5px solid var(--rose); }
-.badge-practice { background: #e8f4e8; color: #3a7a3a; border: 1.5px solid #a0d0a0; }
-.day-header h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(22px, 5vw, 34px);
-  color: var(--text);
-  line-height: 1.2;
-  margin-bottom: 6px;
-}
-.day-meta {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 8px;
-}
-.meta-tag {
-  background: var(--white);
-  border: 1px solid var(--accent);
-  border-radius: 8px;
-  padding: 4px 10px;
-  font-size: 12px;
-  color: var(--muted);
-  font-weight: 600;
-}
+/* FILTERS */
+.filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px;}
+.fbtn{display:inline-flex;align-items:center;gap:5px;background:var(--card);border:1.5px solid var(--border);color:var(--ink2);font-size:13px;font-weight:600;padding:7px 14px;border-radius:20px;cursor:pointer;font-family:var(--body);transition:all .15s;white-space:nowrap;}
+.fbtn:hover{border-color:var(--pink3);color:var(--pink);}
+.fbtn.active{background:var(--pink);border-color:var(--pink);color:#fff;}
 
-/* TIMELINE */
-.timeline { padding: 0 16px 20px; }
-.tl-item {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 6px;
-  position: relative;
-}
-.tl-item:not(:last-child)::before {
-  content: '';
-  position: absolute;
-  left: 19px;
-  top: 36px;
-  bottom: -6px;
-  width: 2px;
-  background: linear-gradient(to bottom, var(--rose), transparent);
-}
-.tl-time {
-  flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 10px;
-  font-weight: 700;
-  color: white;
-  background: var(--mauve);
-  margin-top: 4px;
-  flex-direction: column;
-  line-height: 1.1;
-  text-align: center;
-}
-.tl-time.break { background: var(--gold); }
-.tl-time.end { background: #5a9a5a; }
-.tl-content {
-  flex: 1;
-  background: var(--white);
-  border-radius: 14px;
-  border: 1px solid var(--accent);
-  padding: 14px 16px;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 8px rgba(194,107,120,0.05);
-}
-.tl-content.break-card { background: #fffdf5; border-color: #e8d8a0; }
-.tl-content.end-card { background: #f0f8f0; border-color: #a0d0a0; }
-.tl-title {
-  font-weight: 700;
-  color: var(--text);
-  font-size: 14px;
-  margin-bottom: 4px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.tl-time-label {
-  font-size: 11px;
-  color: var(--muted);
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-.tl-body { font-size: 13px; color: var(--muted); line-height: 1.6; }
-.tl-body ul { margin: 6px 0 0 0; padding-left: 0; list-style: none; }
-.tl-body ul li {
-  padding: 3px 0 3px 18px;
-  position: relative;
-  font-size: 13px;
-}
-.tl-body ul li::before {
-  content: '🌸';
-  position: absolute;
-  left: 0;
-  font-size: 10px;
-  top: 5px;
-}
-.tl-body ul li.warn::before { content: '⚠️'; }
-.tl-body ul li.star::before { content: '⭐'; }
-.tl-body ul li.check::before { content: '✅'; }
+/* PRODUCT GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:12px;}
+.pcard{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:all .2s;position:relative;}
+.pcard:hover{box-shadow:0 8px 24px rgba(233,30,140,.15);transform:translateY(-3px);border-color:var(--pink3);}
+.pemoji{height:90px;display:flex;align-items:center;justify-content:center;font-size:40px;background:linear-gradient(135deg,#FFF0F7,#F3E8FF);}
+.pbody{padding:10px 12px 13px;}
+.pbadge{display:inline-block;font-size:10px;font-weight:800;padding:2px 8px;border-radius:6px;margin-bottom:5px;}
+.b-hit{background:var(--pink-light);color:var(--pink);}
+.b-new{background:var(--yellow-bg);color:var(--yellow);}
+.b-top{background:var(--purple-light);color:var(--purple);}
+.pname{font-size:13px;font-weight:700;margin-bottom:2px;line-height:1.3;}
+.psub{font-size:11px;color:var(--ink3);margin-bottom:6px;}
+.pprice{font-family:var(--display);font-size:16px;font-weight:900;color:var(--pink);}
+.pstars-row{font-size:11px;color:#F59E0B;margin-top:3px;}
+.admin-del{position:absolute;top:6px;right:6px;background:var(--red);color:#fff;border:none;width:26px;height:26px;border-radius:50%;font-size:16px;cursor:pointer;display:none;align-items:center;justify-content:center;font-weight:700;line-height:1;}
+.admin-mode .admin-del{display:flex;}
+.empty-state{color:var(--ink3);font-size:14px;padding:28px 0;text-align:center;display:none;}
 
-/* HIGHLIGHT */
-.tip-box {
-  margin: 8px 0 0;
-  padding: 10px 14px;
-  border-radius: 10px;
-  font-size: 12px;
-  line-height: 1.5;
-}
-.tip-pink { background: #fdeef0; border-left: 3px solid var(--rose); color: var(--mauve); }
-.tip-green { background: #f0f8f0; border-left: 3px solid #7cb87c; color: #3a7a3a; }
-.tip-gold { background: #fffbe8; border-left: 3px solid var(--gold); color: #7a6020; }
+/* ADD PRODUCT FORM */
+.add-form{background:linear-gradient(135deg,#FFF0F7,#F3E8FF);border:2px dashed var(--pink3);border-radius:var(--radius);padding:18px;margin-bottom:16px;display:none;}
+.add-form.show{display:block;}
+.add-form-title{font-family:var(--display);font-weight:800;font-size:16px;margin-bottom:14px;color:var(--purple);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
+@media(max-width:480px){.form-row{grid-template-columns:1fr;}}
+.finput{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:10px 13px;font-size:13px;font-family:var(--body);color:var(--ink);background:#fff;outline:none;margin-bottom:8px;transition:border-color .15s;}
+.finput:focus{border-color:var(--pink);}
+textarea.finput{resize:none;background:var(--bg);}
+.flabel{font-size:11px;font-weight:700;color:var(--purple);margin-bottom:5px;text-transform:uppercase;letter-spacing:.06em;display:block;}
+.fselect{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:10px 13px;font-size:13px;font-family:var(--body);color:var(--ink);background:#fff;outline:none;cursor:pointer;}
+.fselect:focus{border-color:var(--pink);}
+.add-form-btn{background:linear-gradient(90deg,var(--pink),var(--purple));color:#fff;border:none;border-radius:12px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--body);width:100%;margin-top:6px;}
+.show-add-btn{display:none;background:linear-gradient(90deg,var(--pink),var(--purple));color:#fff;border:none;border-radius:12px;padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--body);margin-bottom:14px;align-items:center;gap:7px;}
+.admin-mode .show-add-btn{display:inline-flex;}
 
-/* TOPICS GRID */
-.topics-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin: 8px 0 0;
-}
-.topic-chip {
-  background: var(--blush);
-  border-radius: 10px;
-  padding: 8px 10px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--mauve);
-  text-align: center;
-  border: 1px solid var(--accent);
-}
+/* PRODUCT PAGE */
+.prod-back{display:inline-flex;align-items:center;gap:6px;background:none;border:1.5px solid var(--border);color:var(--pink);font-size:13px;font-weight:700;cursor:pointer;font-family:var(--body);padding:7px 14px;border-radius:10px;margin-bottom:16px;}
+.prod-hero{background:linear-gradient(135deg,#FFF0F7,#F3E8FF);border:1.5px solid var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;margin-bottom:14px;}
+.prod-emoji-big{font-size:80px;margin-bottom:12px;}
+.prod-title{font-family:var(--display);font-size:24px;font-weight:900;margin-bottom:4px;}
+.prod-origin{font-size:13px;color:var(--ink3);margin-bottom:14px;}
+.prod-price-big{font-family:var(--display);font-size:32px;font-weight:900;color:var(--pink);margin-bottom:12px;}
+.prod-rat{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--border);padding:6px 14px;border-radius:10px;}
+.prod-desc-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:12px;font-size:13px;color:var(--ink2);line-height:1.65;}
+.prod-action-row{display:flex;gap:8px;margin-bottom:18px;}
+.btn-share{flex:1;justify-content:center;background:var(--card);border:1.5px solid var(--border);color:var(--ink);border-radius:14px;padding:13px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--body);display:inline-flex;align-items:center;gap:7px;transition:all .15s;}
+.btn-share:hover{border-color:var(--pink3);color:var(--pink);}
+.btn-share.copied{background:var(--green-bg);border-color:var(--green);color:var(--green);}
 
-/* SUMMARY CARD */
-.summary {
-  margin: 20px 16px 0;
-  background: linear-gradient(135deg, #fdeef0, #f5d8dc);
-  border-radius: 16px;
-  padding: 18px;
-  border: 1.5px solid var(--rose);
-}
-.summary h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 18px;
-  color: var(--mauve);
-  margin-bottom: 10px;
-}
-.summary-items { display: flex; flex-direction: column; gap: 6px; }
-.summary-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  font-size: 13px;
-}
-.summary-dot {
-  width: 8px; height: 8px;
-  background: var(--mauve);
-  border-radius: 50%;
-  flex-shrink: 0;
-  margin-top: 6px;
-}
+/* REVIEWS */
+.rating-top{background:linear-gradient(135deg,#FFF0F7,#F3E8FF);border:1.5px solid var(--border);border-radius:var(--radius);padding:16px 20px;display:flex;align-items:center;gap:16px;margin-bottom:14px;}
+.rnum{font-family:var(--display);font-size:44px;font-weight:900;line-height:1;}
+.rstars-big{color:#F59E0B;letter-spacing:2px;font-size:16px;}
+.rcount{font-size:12px;color:var(--ink3);margin-top:3px;}
+.revlist{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+.rcard{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:14px 16px;position:relative;}
+.rtop{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0;}
+.av0{background:#FDE8F5;color:var(--pink);}
+.av1{background:#E8F5E9;color:#1A7A46;}
+.av2{background:#FEF3C7;color:#92400E;}
+.av3{background:var(--purple-light);color:var(--purple);}
+.rname{font-weight:700;font-size:13px;}
+.rdate{font-size:11px;color:var(--ink3);margin-left:auto;}
+.rstars-sm{font-size:12px;color:#F59E0B;}
+.rtext{font-size:13px;color:var(--ink2);line-height:1.6;}
+.rtag{display:inline-block;font-size:11px;padding:2px 9px;border-radius:6px;margin-top:6px;font-weight:600;}
+.rtag-site{background:var(--pink-light);color:var(--pink);}
+.rtag-2gis{background:#E8F3FF;color:#0055CC;}
+.rtag-prod{background:var(--purple-light);color:var(--purple);}
+.rev-del{position:absolute;top:10px;right:10px;background:var(--red-bg);color:var(--red);border:none;font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;cursor:pointer;display:none;}
+.admin-mode .rev-del{display:block;}
+.dgis-link{display:inline-flex;align-items:center;gap:7px;color:var(--pink);font-size:13px;font-weight:700;text-decoration:none;background:var(--pink-light);padding:10px 16px;border-radius:12px;margin-bottom:18px;border:1.5px solid var(--border);}
 
-/* TEST CARD */
-.test-card {
-  margin: 16px 16px 0;
-  background: var(--white);
-  border-radius: 16px;
-  border: 2px solid var(--gold);
-  padding: 18px;
-}
-.test-card h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 18px;
-  color: var(--gold);
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.test-q {
-  background: #fffbe8;
-  border-radius: 10px;
-  padding: 10px 14px;
-  font-size: 13px;
-  margin-bottom: 8px;
-  border-left: 3px solid var(--gold);
-  color: var(--text);
-}
+/* ADD REVIEW FORM */
+.addrev{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:16px;}
+.addrev-title{font-family:var(--display);font-weight:800;font-size:16px;margin-bottom:12px;}
+.spicker{display:flex;gap:6px;margin-bottom:10px;}
+.sp{font-size:28px;cursor:pointer;color:#DDD;background:none;border:none;padding:0;transition:color .1s,transform .1s;line-height:1;}
+.sp.on{color:#F59E0B;transform:scale(1.1);}
+.btn-send{background:linear-gradient(90deg,var(--pink),var(--purple));color:#fff;border:none;border-radius:12px;padding:11px 22px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--body);}
+.msg-ok{display:none;background:var(--green-bg);border:1px solid var(--green-border);color:var(--green);font-size:13px;font-weight:700;padding:10px 14px;border-radius:10px;margin-top:8px;}
+.msg-err{display:none;background:var(--red-bg);color:var(--red);font-size:13px;font-weight:700;padding:10px 14px;border-radius:10px;margin-top:8px;}
+.msg-already{background:var(--yellow-bg);color:var(--yellow);font-size:13px;font-weight:600;padding:10px 14px;border-radius:10px;margin-top:8px;display:none;}
 
-/* CERT */
-.cert {
-  margin: 16px 16px 0;
-  background: linear-gradient(135deg, #fdf8f0, #f5e8d0);
-  border-radius: 16px;
-  border: 2px solid var(--gold);
-  padding: 22px;
-  text-align: center;
-}
-.cert-icon { font-size: 36px; margin-bottom: 8px; }
-.cert h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
-  color: var(--gold);
-  margin-bottom: 6px;
-}
-.cert p { font-size: 13px; color: var(--muted); }
+/* ADDRESS */
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+@media(max-width:480px){.agrid{grid-template-columns:1fr;}}
+.acard{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:14px;display:flex;gap:12px;align-items:flex-start;}
+.aicon{width:44px;height:44px;background:linear-gradient(135deg,var(--pink-light),var(--purple-light));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.atitle{font-weight:700;font-size:13px;margin-bottom:3px;}
+.atext{font-size:13px;color:var(--ink2);}
+.ahint{font-size:11px;color:var(--ink3);margin-top:3px;}
+.open-pill{display:inline-flex;align-items:center;gap:6px;background:var(--green-bg);color:var(--green);font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:12px;}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green);}
+.hrow{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.hrow:last-child{border-bottom:none;}
+.hday{color:var(--ink2);}
+.htime{font-weight:700;}
 
-/* OVERVIEW PAGE */
-.overview-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  padding: 16px;
-}
-.ov-card {
-  border-radius: 16px;
-  padding: 16px;
-  border: 1.5px solid var(--accent);
-  cursor: pointer;
-  transition: transform .2s;
-}
-.ov-card:active { transform: scale(0.97); }
-.ov-day { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
-.ov-title { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 600; margin-bottom: 4px; }
-.ov-time { font-size: 11px; color: var(--muted); }
-.ov-topics { margin-top: 8px; font-size: 11px; color: var(--muted); line-height: 1.6; }
-.d1-bg { background: linear-gradient(135deg, #fdeef0, #f9d8dc); }
-.d2-bg { background: linear-gradient(135deg, #eef3fd, #d8e4f9); }
-.d3-bg { background: linear-gradient(135deg, #eefdf0, #d8f4dc); }
-.d4-bg { background: linear-gradient(135deg, #fdf8ee, #f4ead8); }
-.d1-color { color: #c26b78; }
-.d2-color { color: #4a70c0; }
-.d3-color { color: #3a8a4a; }
-.d4-color { color: #c09020; }
+/* TOAST */
 
-/* SCROLL TOP */
-.scroll-top {
-  position: fixed;
-  bottom: 20px; right: 20px;
-  width: 40px; height: 40px;
-  background: var(--mauve);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  font-size: 16px;
-  cursor: pointer;
-  display: none;
-  z-index: 200;
-  box-shadow: 0 4px 14px rgba(194,107,120,0.4);
-}
+/* CONFIRM POPUP */
+.confirm-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:998;display:none;align-items:flex-end;justify-content:center;padding-bottom:24px;}
+.confirm-overlay.show{display:flex;}
+.confirm-box{background:#fff;border-radius:20px;padding:20px;width:320px;max-width:90vw;text-align:center;}
+.confirm-title{font-family:var(--display);font-size:16px;font-weight:800;margin-bottom:6px;color:var(--ink);}
+.confirm-sub{font-size:13px;color:var(--ink3);margin-bottom:16px;line-height:1.5;}
+.confirm-btns{display:flex;gap:8px;}
+.confirm-yes{flex:1;background:var(--red);color:#fff;border:none;border-radius:12px;padding:11px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--body);}
+.confirm-no{flex:1;background:var(--card);border:1.5px solid var(--border);color:var(--ink);border-radius:12px;padding:11px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--body);}
 
-footer {
-  text-align: center;
-  padding: 24px;
-  color: var(--muted);
-  font-size: 12px;
-  border-top: 1px solid var(--accent);
-  margin-top: 20px;
-}
+
+/* 2GIS FORM */
+.gis-form{background:linear-gradient(135deg,#E8F3FF,#EEF2FF);border:2px dashed #4A90D9;border-radius:var(--radius);padding:18px;margin-bottom:16px;display:none;}
+.gis-form.show{display:block;}
+.gis-form-title{font-family:var(--display);font-weight:800;font-size:16px;margin-bottom:4px;color:#0055CC;}
+.gis-form-sub{font-size:12px;color:#4A7DB5;margin-bottom:14px;}
+.gis-star-row{display:flex;gap:6px;margin-bottom:10px;}
+.gis-sp{font-size:26px;cursor:pointer;color:#DDD;background:none;border:none;padding:0;transition:color .1s;line-height:1;}
+.gis-sp.on{color:#F59E0B;}
+.gis-form-btn{background:linear-gradient(90deg,#1A56DB,#0055CC);color:#fff;border:none;border-radius:12px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--body);width:100%;margin-top:6px;}
+.show-gis-btn{display:none;background:linear-gradient(90deg,#1A56DB,#0055CC);color:#fff;border:none;border-radius:12px;padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--body);margin-bottom:10px;align-items:center;gap:7px;}
+.admin-mode .show-gis-btn{display:inline-flex;}
+
+
+/* PHOTO UPLOAD */
+.photo-upload-area{border:2px dashed var(--border);border-radius:12px;padding:16px;text-align:center;cursor:pointer;transition:all .15s;margin-bottom:8px;background:#fff;position:relative;}
+.photo-upload-area:hover{border-color:var(--pink3);background:var(--pink-light);}
+.photo-upload-area.has-photo{border-color:var(--pink);padding:0;overflow:hidden;}
+.photo-preview{width:100%;height:120px;object-fit:cover;border-radius:10px;display:none;}
+.photo-preview.show{display:block;}
+.photo-upload-placeholder{pointer-events:none;}
+.photo-upload-icon{font-size:28px;margin-bottom:4px;}
+.photo-upload-text{font-size:12px;color:var(--ink3);font-weight:500;}
+.photo-remove{position:absolute;top:6px;right:6px;background:var(--red);color:#fff;border:none;width:24px;height:24px;border-radius:50%;font-size:14px;cursor:pointer;display:none;align-items:center;justify-content:center;font-weight:700;line-height:1;z-index:2;}
+.photo-upload-area.has-photo .photo-remove{display:flex;}
+.pcard-img{width:100%;height:90px;object-fit:cover;}
+
+
+/* PHOTO IN REVIEWS */
+.review-photo-upload{border:2px dashed var(--border);border-radius:10px;padding:10px;text-align:center;cursor:pointer;transition:all .15s;margin-bottom:9px;background:var(--bg);position:relative;}
+.review-photo-upload:hover{border-color:var(--pink3);}
+.review-photo-upload.has-photo{padding:0;border-color:var(--pink);overflow:hidden;}
+.review-photo-preview{width:100%;height:100px;object-fit:cover;border-radius:8px;display:none;}
+.review-photo-preview.show{display:block;}
+.review-photo-placeholder{pointer-events:none;display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:var(--ink3);font-weight:500;}
+.review-photo-remove{position:absolute;top:5px;right:5px;background:var(--red);color:#fff;border:none;width:22px;height:22px;border-radius:50%;font-size:13px;cursor:pointer;display:none;align-items:center;justify-content:center;font-weight:700;line-height:1;z-index:2;}
+.review-photo-upload.has-photo .review-photo-remove{display:flex;}
+.rcard-photo{width:100%;max-height:200px;object-fit:cover;border-radius:10px;margin-top:8px;cursor:pointer;}
+
+
+/* EDIT CATEGORY */
+.admin-edit{position:absolute;top:6px;right:38px;background:var(--purple);color:#fff;border:none;width:26px;height:26px;border-radius:50%;font-size:13px;cursor:pointer;display:none;align-items:center;justify-content:center;}
+.admin-mode .admin-edit{display:flex;}
+.cat-edit-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:998;display:none;align-items:flex-end;justify-content:center;padding-bottom:24px;}
+.cat-edit-overlay.show{display:flex;}
+.cat-edit-box{background:#fff;border-radius:20px;padding:20px;width:320px;max-width:90vw;}
+.cat-edit-title{font-family:var(--display);font-size:16px;font-weight:800;margin-bottom:4px;color:var(--ink);}
+.cat-edit-sub{font-size:12px;color:var(--ink3);margin-bottom:14px;}
+.cat-edit-list{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+.cat-edit-opt{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;font-size:14px;font-weight:600;color:var(--ink2);background:#fff;transition:all .15s;}
+.cat-edit-opt:hover{border-color:var(--pink3);background:var(--pink-light);}
+.cat-edit-opt.selected{border-color:var(--pink);background:var(--pink-light);color:var(--pink);}
+.cat-edit-close{width:100%;background:var(--card);border:1.5px solid var(--border);color:var(--ink);border-radius:12px;padding:11px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--body);}
+
+
+/* CATEGORY MANAGEMENT */
+.show-cat-btn{display:none;background:var(--card);border:1.5px solid var(--border);color:var(--ink2);font-size:12px;font-weight:600;padding:7px 14px;border-radius:20px;cursor:pointer;font-family:var(--body);margin-bottom:14px;align-items:center;gap:6px;}
+.admin-mode .show-cat-btn{display:inline-flex;}
+.cat-manage-list{display:flex;flex-direction:column;gap:6px;}
+.cat-manage-row{display:flex;align-items:center;gap:10px;padding:9px 12px;background:#fff;border:1.5px solid var(--border);border-radius:10px;}
+.cat-manage-emoji{font-size:18px;}
+.cat-manage-name{flex:1;font-size:13px;font-weight:600;color:var(--ink);}
+.cat-manage-del{background:var(--red-bg);color:var(--red);border:none;font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px;cursor:pointer;}
+.cat-manage-empty{font-size:12px;color:var(--ink3);text-align:center;padding:10px;}
+
+
+/* CATEGORY PHOTO */
+.cat-photo-upload{width:52px;height:52px;border:2px dashed var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;flex-shrink:0;overflow:hidden;background:#fff;transition:border-color .15s;}
+.cat-photo-upload:hover{border-color:var(--pink3);}
+.cat-photo-upload.has-photo{border:none;}
+.cat-photo-img{width:100%;height:100%;object-fit:cover;display:none;}
+.cat-photo-img.show{display:block;}
+.cat-photo-icon{font-size:20px;pointer-events:none;}
+.cat-photo-remove{position:absolute;top:-2px;right:-2px;background:var(--red);color:#fff;border:none;width:18px;height:18px;border-radius:50%;font-size:11px;cursor:pointer;display:none;align-items:center;justify-content:center;font-weight:700;line-height:1;z-index:2;}
+.cat-photo-upload.has-photo .cat-photo-remove{display:flex;}
+.cat-manage-emoji-img{width:32px;height:32px;border-radius:8px;object-fit:cover;}
+.fbtn-img{width:18px;height:18px;border-radius:5px;object-fit:cover;vertical-align:middle;margin-right:2px;}
+
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:#1A1A1A;color:#fff;font-size:13px;font-weight:600;padding:10px 22px;border-radius:20px;opacity:0;transition:opacity .25s,transform .25s;pointer-events:none;white-space:nowrap;z-index:9999;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* FOOTER */
+.footer{background:linear-gradient(90deg,#E91E8C,#7B2FBE);color:rgba(255,255,255,.75);font-size:12px;text-align:center;padding:1.5rem 1.25rem;}
+.footer a{color:#FFE0F0;text-decoration:none;font-weight:600;}
+.footer-logo{font-family:var(--display);font-size:18px;font-weight:900;color:#fff;margin-bottom:6px;}
 </style>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, setDoc, getDocs, deleteDoc, doc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCkBDlcrvOjt6rsduVCoegZV8Z46uWnDr4",
+      authDomain: "neko-market-179a7.firebaseapp.com",
+      projectId: "neko-market-179a7",
+      storageBucket: "neko-market-179a7.firebasestorage.app",
+      messagingSenderId: "1085884076499",
+      appId: "1:1085884076499:web:4b8e71b04c1d10466ddf26"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    // Сохраняем db и auth глобально
+    window.db = db;
+    window.fbCollection = collection;
+    window.fbAddDoc = addDoc;
+    window.fbSetDoc = setDoc;
+    window.fbGetDocs = getDocs;
+    window.fbDeleteDoc = deleteDoc;
+    window.fbDoc = doc;
+    window.fbQuery = query;
+    window.fbOrderBy = orderBy;
+    window.auth = auth;
+    window.fbSignIn = signInWithEmailAndPassword;
+    window.fbSignOut = signOut;
+    window.firebaseReady = true;
+    window.dispatchEvent(new Event('firebaseReady'));
+
+    // Состояние входа админа приходит напрямую с сервера Firebase —
+    // сам пароль в этом файле больше нигде не хранится.
+    onAuthStateChanged(auth, (user) => {
+      window.isAdminAuthed = !!user;
+      window.dispatchEvent(new Event('adminAuthChanged'));
+    });
+  </script>
 </head>
 <body>
 
-<div class="hero">
-  <span class="hero-icon">👩‍🏫</span>
-  <h1>План курса<br>по маникюру</h1>
-  <p class="hero-sub">Полная программа обучения · 4 дня</p>
-  <div class="hero-stats">
-    <div class="stat"><span class="stat-num">4</span><span class="stat-label">дня</span></div>
-    <div class="stat"><span class="stat-num">22</span><span class="stat-label">часа</span></div>
-    <div class="stat"><span class="stat-num">1–2</span><span class="stat-label">ученика</span></div>
-    <div class="stat"><span class="stat-num">8</span><span class="stat-label">тем</span></div>
+<!-- ADMIN BAR -->
+<div class="admin-bar" id="adminBar">
+  <div class="admin-bar-inner">
+    <div class="admin-label">🔧 Режим администратора</div>
+    <button class="admin-btn" onclick="exportYmlFeed()">📦 YML для 2ГИС</button>
+    <button class="admin-btn admin-btn-red" onclick="resetProducts()">🔄 Восстановить все товары</button>
+    <button class="admin-btn admin-btn-red" onclick="resetCategories()">🔄 Восстановить категории</button>
+    <button class="admin-btn admin-btn-red" onclick="wipeOldReviews()">🧹 Починить старые отзывы</button>
+    <button class="admin-btn admin-btn-logout" onclick="adminLogout()">Выйти</button>
   </div>
 </div>
 
-<div class="tabs">
-  <button class="tab active" onclick="showPage(0,this)">📋 Обзор</button>
-  <button class="tab" onclick="showPage(1,this)">День 1 · Теория</button>
-  <button class="tab" onclick="showPage(2,this)">День 2 · Практика</button>
-  <button class="tab" onclick="showPage(3,this)">День 3 · Практика</button>
-  <button class="tab" onclick="showPage(4,this)">День 4 · Экзамен</button>
-</div>
 
-<!-- ОБЗОР -->
-<div class="page active" id="p0">
-  <div class="day-header">
-    <h2>Обзор курса</h2>
-    <p style="color:var(--muted);font-size:13px;margin-top:4px">Нажми на день чтобы открыть подробный план</p>
-  </div>
-  <div class="overview-grid">
-    <div class="ov-card d1-bg" onclick="showPage(1,document.querySelectorAll('.tab')[1])">
-      <div class="ov-day d1-color">День 1</div>
-      <div class="ov-title d1-color">Теория</div>
-      <div class="ov-time">🕐 3–4 часа</div>
-      <div class="ov-topics">Безопасность · Стерилизация · Анатомия ногтя · Инструменты · Заболевания</div>
-    </div>
-    <div class="ov-card d2-bg" onclick="showPage(2,document.querySelectorAll('.tab')[2])">
-      <div class="ov-day d2-color">День 2</div>
-      <div class="ov-title d2-color">Практика</div>
-      <div class="ov-time">🕐 12:00–18:00</div>
-      <div class="ov-topics">Снятие покрытия · Фрезы · Комбо-маникюр · Формы ногтей</div>
-    </div>
-    <div class="ov-card d3-bg" onclick="showPage(3,document.querySelectorAll('.tab')[3])">
-      <div class="ov-day d3-color">День 3</div>
-      <div class="ov-title d3-color">Практика</div>
-      <div class="ov-time">🕐 12:00–18:00</div>
-      <div class="ov-topics">Покрытие · База · Цвет · Топ · Архитектура · Апекс</div>
-    </div>
-    <div class="ov-card d4-bg" onclick="showPage(4,document.querySelectorAll('.tab')[4])">
-      <div class="ov-day d4-color">День 4</div>
-      <div class="ov-title d4-color">Экзамен</div>
-      <div class="ov-time">🕐 12:00–18:00</div>
-      <div class="ov-topics">Самостоятельный маникюр · Разбор ошибок · Тест · Сертификат</div>
-    </div>
-  </div>
-
-  <div class="summary" style="margin-top:16px">
-    <h3>🌸 Что получит ученик</h3>
-    <div class="summary-items">
-      <div class="summary-item"><div class="summary-dot"></div><div>Полная база теории: анатомия, заболевания, инструменты</div></div>
-      <div class="summary-item"><div class="summary-dot"></div><div>Практика снятия покрытия и обработки кутикулы</div></div>
-      <div class="summary-item"><div class="summary-dot"></div><div>Самостоятельное покрытие: база → цвет → топ</div></div>
-      <div class="summary-item"><div class="summary-dot"></div><div>Понимание архитектуры ногтя и апекса</div></div>
-      <div class="summary-item"><div class="summary-dot"></div><div>Готовность принять первых клиентов</div></div>
-      <div class="summary-item"><div class="summary-dot"></div><div>Сертификат об окончании курса 🎓</div></div>
-    </div>
-  </div>
-
-  <div style="padding:16px">
-    <div class="tip-gold">
-      <strong>💡 Совет преподавателю:</strong> Используй HTML-презентацию курса как наглядный материал на каждом занятии — ученица может смотреть схемы и фото прямо с телефона
+<!-- CONFIRM POPUP -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <div style="font-size:32px;margin-bottom:8px">🗑</div>
+    <div class="confirm-title" id="confirmTitle">Удалить товар?</div>
+    <div class="confirm-sub" id="confirmSub">Отзывы на этот товар тоже удалятся.</div>
+    <div class="confirm-btns">
+      <button class="confirm-no" onclick="closeConfirm()">Отмена</button>
+      <button class="confirm-yes" id="confirmYes">Удалить</button>
     </div>
   </div>
 </div>
 
-<!-- ДЕНЬ 1 -->
-<div class="page" id="p1">
-  <div class="day-header" data-day="1">
-    <div class="day-badge badge-theory">📚 Теория</div>
-    <h2>День 1 — Теория</h2>
-    <div class="day-meta">
-      <span class="meta-tag">⏱ 3–4 часа</span>
-      <span class="meta-tag">📍 Гибкое время</span>
-      <span class="meta-tag">👩‍🎓 Без модели</span>
-    </div>
-  </div>
 
-  <div class="timeline">
-
-    <div class="tl-item">
-      <div class="tl-time">1</div>
-      <div class="tl-content">
-        <div class="tl-time-label">Блок 1 · 45 минут</div>
-        <div class="tl-title">😷 Внешний вид и рабочее место</div>
-        <div class="tl-body">
-          <ul>
-            <li>Маска, перчатки нитриловые vs виниловые, фартук, сменная обувь</li>
-            <li>Организация стола: освещение, проветривание, расположение инструментов</li>
-            <li>Разбор каждого оборудования: лампа, аппарат, пылесос</li>
-            <li class="star">Показать как правильно держать аппарат — опорный палец мизинец</li>
-          </ul>
-          <div class="tip-pink">Дай потрогать все инструменты руками — так запоминается лучше</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-time">2</div>
-      <div class="tl-content">
-        <div class="tl-time-label">Блок 2 · 45 минут</div>
-        <div class="tl-title">🦠 Дезинфекция и стерилизация</div>
-        <div class="tl-body">
-          <ul>
-            <li>Зачем это нужно и что будет если пропустить</li>
-            <li>Аламинол: пропорция — 10 мл на 1 л воды</li>
-            <li>3 шага: дезинфекция (15-20 мин) → промывка → сухожар (180°C, 60 мин)</li>
-            <li class="star">Практика: приготовить раствор, заложить инструменты в бокс</li>
-          </ul>
-          <div class="tip-green">Пусть сама запишет пропорции — это она должна знать наизусть</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-time break">☕</div>
-      <div class="tl-content break-card">
-        <div class="tl-title">Перерыв · 15 минут</div>
-        <div class="tl-body">Чай, вода, отдых глаз</div>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-time">3</div>
-      <div class="tl-content">
-        <div class="tl-time-label">Блок 3 · 50 минут</div>
-        <div class="tl-title">💅 Строение ногтевого аппарата</div>
-        <div class="tl-body">
-          <ul>
-            <li>Разбор всех 15 элементов по схеме (открыть в HTML-презентации)</li>
-            <li class="warn">Точки вроста — нельзя трогать → онихолизис</li>
-            <li class="warn">Гипонихий — нельзя ковырять → онихолизис</li>
-            <li class="warn">Эпонихий — не кутикула! Нельзя обрезать</li>
-            <li>Матрикс и лунула — откуда растёт ноготь</li>
-            <li class="star">Попросить ученицу показать на своём пальце каждый элемент</li>
-          </ul>
-          <div class="tip-pink">Акцент на 3 главных запрета — они должны осесть в голове накрепко</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-time">4</div>
-      <div class="tl-content">
-        <div class="tl-time-label">Блок 4 · 40 минут</div>
-        <div class="tl-title">⚕️ Заболевания ногтей</div>
-        <div class="tl-body">
-          <ul>
-            <li>Разбор каждого по фото из презентации</li>
-            <li class="warn">Заразные: онихомикоз, синегнойная палочка, бородавки — не работать!</li>
-            <li>Не заразные но тоже нельзя: онихолизис, онихорексис, псориаз</li>
-            <li class="star">Игра: показываешь фото — ученица называет и говорит можно ли работать</li>
-          </ul>
-          <div class="tip-gold">Это важнейший раздел для безопасности клиента — не торопись</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-time">5</div>
-      <div class="tl-content">
-        <div class="tl-time-label">Блок 5 · 30 минут</div>
-        <div class="tl-title">🔧 Инструменты и материалы</div>
-        <div class="tl-body">
-          <ul>
-            <li>Виды фрез: алмазные (кожа) vs твёрдосплавные (материал)</li>
-            <li>Цвета насечек: жёлтая → красная ⭐ → синяя → зелёная</li>
-            <li>Формы: пламя, кукуруза, конус, шар</li>
-            <li>Базы: жёсткая / средне-жёсткая (rubber) / эластичная</li>
-            <li>Топы, праймер, дигидратор, обезжириватель — что для чего</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-time end">✓</div>
-      <div class="tl-content end-card">
-        <div class="tl-title">🎯 Итог дня</div>
-        <div class="tl-body">
-          <ul>
-            <li class="check">Задать 5 вопросов по пройденному материалу</li>
-            <li class="check">Домашнее задание: выучить 15 элементов ногтя</li>
-            <li class="check">Предложить ещё раз прочитать презентацию дома</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
+<!-- CATEGORY EDIT POPUP -->
+<div class="cat-edit-overlay" id="catEditOverlay">
+  <div class="cat-edit-box">
+    <div class="cat-edit-title">📂 Изменить категорию</div>
+    <div class="cat-edit-sub" id="catEditProdName">Товар</div>
+    <div class="cat-edit-list" id="catEditList"></div>
+    <button class="cat-edit-close" onclick="closeCatEdit()">Отмена</button>
   </div>
 </div>
 
-<!-- ДЕНЬ 2 -->
-<div class="page" id="p2">
-  <div class="day-header" data-day="2">
-    <div class="day-badge badge-practice">✂️ Практика</div>
-    <h2>День 2 — Снятие и маникюр</h2>
-    <div class="day-meta">
-      <span class="meta-tag">⏱ 12:00–18:00</span>
-      <span class="meta-tag">👩‍🦰 Нужна модель</span>
-      <span class="meta-tag">🔧 Аппарат</span>
-    </div>
-  </div>
-
-  <div class="timeline">
-
-    <div class="tl-item">
-      <div class="tl-time" style="font-size:8px">12:00</div>
-      <div class="tl-content">
-        <div class="tl-time-label">12:00–13:00 · 1 час</div>
-        <div class="tl-title">🔧 Разбор фрез и аппарата</div>
-        <div class="tl-body">
-          <ul>
-            <li>Повторение: какая фреза для чего</li>
-            <li>Обороты: 35 000 → снятие, 15 000 → кутикула, 5 000 → шлифовка</li>
-            <li>Зоны фрезы: носик / щёчка / пузико</li>
-            <li class="star">Показ на своей руке: хват, угол, давление, опорный мизинец</li>
-            <li class="warn">Объяснить почему нельзя давить — ожог ногтевого ложа</li>
-          </ul>
-          <div class="tip-pink">Пусть подержит включённый аппарат и почувствует обороты на своём ногте</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-time" style="font-size:8px">13:00</div>
-      <div class="tl-content">
-        <div class="tl-time-label">13:00–14:30 · 1.5 часа</div>
-        <div class="tl-title">💅 Снятие покрытия на модели</div>
-        <div class="tl-body">
-          <ul>
-            <li>Сначала смотришь как ты снимаешь — ученица наблюдает</li>
-            <li>Затем ученица пробует сама на 2-3 пальцах под контролем</li>
-            <li>Контроль: давление, угол фрезы, не заходить на кожу</li>
-            <li class="star">После снятия — проверить ноготь: не должно быть перегрева и царапин</li>
-          </ul>
-          <div class="tip-gold">На этом этапе главное — скорость не важна. Важна безопасность</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-time break">🍽️</div>
-      <div class="tl-content break-card">
-        <div class="tl-title">Обед · 30 минут · 14:30–15:00</div>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-time" style="font-size:8px">15:00</div>
-      <div class="tl-content">
-        <div class="tl-time-label">15:00–16:30 · 1.5 часа</div>
-        <div class="tl-title">✂️ Комбинированный маникюр</div>
-        <div class="tl-body">
-          <ul>
-            <li>Апельсиновой палочкой — отодвинуть кутикулу, раскрыть карман</li>
-            <li>Фреза 15 000: убрать птеригий FWD влево → RW вправо</li>
-            <li>Срез кутикулы ножницами/кусачками</li>
-            <li>Фреза RW 5 000: шлифовка</li>
-            <li class="star">Ученица делает 1 руку самостоятельно</li>
-          </ul>
-          <div class="tip-green">Хвали за правильные движения — это мотивирует учиться дальше</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-time" style="font-size:8px">16:30</div>
-      <div class="tl-content">
-        <div class="tl-time-label">16:30–17:30 · 1 час</div>
-        <div class="tl-title">📐 Формы ногтей</div>
-        <div class="tl-body">
-          <ul>
-            <li>Пропорции: безымянный = указательный, средний +1–1,5 мм</li>
-            <li>Боковая и центральная оси</li>
-            <li>Отработка форм на типсах: квадрат → скво-овал → овал → миндаль</li>
-            <li class="star">Ученица опиливает форму на модели</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-time end">✓</div>
-      <div class="tl-content end-card">
-        <div class="tl-time-label">17:30–18:00</div>
-        <div class="tl-title">🎯 Разбор дня</div>
-        <div class="tl-body">
-          <ul>
-            <li class="check">Что получилось хорошо — обязательно отметить</li>
-            <li class="check">Над чем работать дома (типсы + пилка)</li>
-            <li class="check">Домашнее задание: потренировать формы на типсах</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
+<!-- LOGIN -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-box">
+    <div style="font-size:36px;margin-bottom:8px">🔐</div>
+    <div class="login-title">Администратор</div>
+    <div class="login-sub">Введите пароль магазина</div>
+    <input class="login-input" type="password" id="loginInput" placeholder="••••••••" onkeydown="if(event.key==='Enter')tryLogin()"/>
+    <button class="login-btn" onclick="tryLogin()">Войти</button>
+    <div class="login-err" id="loginErr">❌ Неверный пароль</div><br>
+    <button class="login-close" onclick="closeLogin()">Отмена</button>
   </div>
 </div>
 
-<!-- ДЕНЬ 3 -->
-<div class="page" id="p3">
-  <div class="day-header" data-day="3">
-    <div class="day-badge badge-practice">🎨 Практика</div>
-    <h2>День 3 — Покрытие</h2>
-    <div class="day-meta">
-      <span class="meta-tag">⏱ 12:00–18:00</span>
-      <span class="meta-tag">👩‍🦰 Нужна модель</span>
-      <span class="meta-tag">💅 Гель-лаки</span>
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="showPage('home')">🐾 Neko Market</div>
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="showPage('home')">Главная</button>
+      <button class="nav-tab" onclick="showPage('reviews')">Отзывы</button>
+      <button class="nav-tab" onclick="showPage('info')">Адрес</button>
+      <button class="nav-tab" onclick="openAdmin()" id="adminTabBtn">⚙️</button>
     </div>
   </div>
+</nav>
 
-  <div class="timeline">
-
-    <div class="tl-item">
-      <div class="tl-time" style="font-size:8px">12:00</div>
-      <div class="tl-content">
-        <div class="tl-time-label">12:00–13:00 · 1 час</div>
-        <div class="tl-title">🧴 Теория покрытия</div>
-        <div class="tl-body">
-          <ul>
-            <li>Полный порядок: дигидратор → праймер → база → выравнивание → цвет → топ</li>
-            <li>Дигидратор — только при влажной пластине</li>
-            <li>Праймер — 2-3 мазка на кончик</li>
-            <li>Разница баз: жёсткая / rubber / эластичная — когда какую</li>
-            <li>Топ с липким слоем vs без — как убирать</li>
-            <li class="warn">Жжение в лампе — вынуть руку, остудить, досушить</li>
-          </ul>
-          <div class="tip-pink">Покажи разницу консистенций баз — пусть сама потрогает</div>
-        </div>
-      </div>
+<!-- PROMO -->
+<div class="promo-banner" id="promoBanner">
+  <div class="promo-inner">
+    <div class="promo-text">
+      <strong>🎉 Акция — скидка 10% на любую покупку!</strong>
+      Покажи этот сайт на кассе и получи скидку
     </div>
-
-    <div class="tl-item">
-      <div class="tl-time" style="font-size:8px">13:00</div>
-      <div class="tl-content">
-        <div class="tl-time-label">13:00–14:30 · 1.5 часа</div>
-        <div class="tl-title">💅 Полный маникюр на модели</div>
-        <div class="tl-body">
-          <ul>
-            <li>Ученица делает полный маникюр: обработка + покрытие</li>
-            <li>Ты рядом — подсказываешь но не делаешь за неё</li>
-            <li class="star">Акцент на аккуратность под кутикулой</li>
-            <li>Проверить: нет ли пузырей, подтёков, пропусков</li>
-          </ul>
-          <div class="tip-green">Пусть сама замечает свои ошибки — задавай наводящие вопросы</div>
-        </div>
-      </div>
+    <div class="promo-timer">
+      <div class="tblock"><span class="tnum" id="t-h">00</span><span class="tlbl">ч</span></div>
+      <span class="tsep">:</span>
+      <div class="tblock"><span class="tnum" id="t-m">00</span><span class="tlbl">мин</span></div>
+      <span class="tsep">:</span>
+      <div class="tblock"><span class="tnum" id="t-s">00</span><span class="tlbl">сек</span></div>
     </div>
-
-    <div class="tl-item">
-      <div class="tl-time break">🍽️</div>
-      <div class="tl-content break-card">
-        <div class="tl-title">Обед · 30 минут · 14:30–15:00</div>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-time" style="font-size:8px">15:00</div>
-      <div class="tl-content">
-        <div class="tl-time-label">15:00–16:30 · 1.5 часа</div>
-        <div class="tl-title">🏛️ Архитектура и апекс</div>
-        <div class="tl-body">
-          <ul>
-            <li>Апекс — наивысшая точка ногтя. На коротких — центр 2-й части, на длинных — граница 1-й и 2-й</li>
-            <li>Выравнивание — не доп. услуга, а обязательный этап</li>
-            <li class="warn">Нельзя перенашивать — не более 3-4 недель</li>
-            <li class="star">Отработка на типсах: наносим гель, выстраиваем апекс, полируем</li>
-          </ul>
-          <div class="tip-gold">Покажи на своих ногтях как выглядит правильный и неправильный апекс</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-time" style="font-size:8px">16:30</div>
-      <div class="tl-content">
-        <div class="tl-time-label">16:30–17:30 · 1 час</div>
-        <div class="tl-title">🌿 Работа с гелем и акригелем</div>
-        <div class="tl-body">
-          <ul>
-            <li>Самовыравнивающийся гель — молочный: как наносить без перегрева</li>
-            <li>Акригель — не печёт, для укрепления и наращивания</li>
-            <li class="star">Ученица пробует укрепить 2-3 ногтя акригелем</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-time end">✓</div>
-      <div class="tl-content end-card">
-        <div class="tl-time-label">17:30–18:00</div>
-        <div class="tl-title">🎯 Разбор дня</div>
-        <div class="tl-body">
-          <ul>
-            <li class="check">Оценить работу — конкретно: что хорошо, что улучшить</li>
-            <li class="check">Домашнее задание: сделать покрытие себе самостоятельно</li>
-            <li class="check">Подготовиться к завтрашнему экзамену</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
+    <button class="promo-close" onclick="document.getElementById('promoBanner').style.display='none'">×</button>
   </div>
 </div>
 
-<!-- ДЕНЬ 4 -->
-<div class="page" id="p4">
-  <div class="day-header" data-day="4">
-    <div class="day-badge" style="background:#fff8e8;color:#c09020;border:1.5px solid var(--gold)">🎓 Экзамен</div>
-    <h2>День 4 — Итоговый день</h2>
-    <div class="day-meta">
-      <span class="meta-tag">⏱ 12:00–18:00</span>
-      <span class="meta-tag">👩‍🦰 Нужна модель</span>
-      <span class="meta-tag">🎓 Сертификат</span>
+<!-- ══ ГЛАВНАЯ ══ -->
+<div id="page-home" class="page active">
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-cat">🐱 к-поп магазин · Челябинск</div>
+      <h1>Neko<br><span class="hero-sub">Market</span></h1>
+      <p class="hero-desc">Лапша, снеки, сладости и всё самое вкусное из Азии 🌸</p>
+      <div class="hero-meta">
+        <span class="hchip">📍 ул. Плеханова, 43</span>
+        <span class="hchip">🕐 10:00–22:00 ежедневно</span>
+        <span class="hchip">📞 +7 995 474-22-04</span>
+      </div>
+      <div class="hero-btns">
+        <a class="btn btn-white" href="https://2gis.ru/chelyabinsk/geo/70000001112641386" target="_blank">🗺 2ГИС</a>
+        <a class="btn btn-vk" href="https://vk.com/nekomarket74" target="_blank">💙 ВКонтакте</a>
+        <a class="btn btn-wa" href="https://wa.me/79954742204" target="_blank">💬 WhatsApp</a>
+      </div>
+      <div class="rating-row">
+        <div class="r-num" id="heroRatingNum">5.0</div>
+        <div><div class="r-stars">★★★★★</div><div class="r-sub" id="heroRatingSub">261 оценка в 2ГИС</div></div>
+      </div>
     </div>
-  </div>
+  </header>
 
-  <div class="timeline">
+  <div class="wrap">
+    <div class="sec-label">Ассортимент</div>
+    <div class="sec-title">Товары магазина</div>
 
-    <div class="tl-item">
-      <div class="tl-time" style="font-size:8px">12:00</div>
-      <div class="tl-content">
-        <div class="tl-time-label">12:00–14:00 · 2 часа</div>
-        <div class="tl-title">💅 Самостоятельный маникюр</div>
-        <div class="tl-body">
-          <ul>
-            <li class="star">Ученица делает полный маникюр от А до Я — без подсказок</li>
-            <li>Порядок: антисептик → осмотр → снятие → обработка → опил → покрытие → топ</li>
-            <li>Ты только наблюдаешь, фиксируешь ошибки</li>
-            <li class="warn">Не вмешивайся — пусть решает сама. Это итоговая работа</li>
-          </ul>
-          <div class="tip-gold">Сделай фото готовой работы — это первая самостоятельная работа ученицы!</div>
+    <button class="show-add-btn" onclick="toggleAddForm()">➕ Добавить товар</button>
+
+    <!-- ФОРМА ДОБАВЛЕНИЯ ТОВАРА -->
+    <div class="add-form" id="addForm">
+      <div class="add-form-title">➕ Новый товар</div>
+      <div class="form-row">
+        <div>
+          <label class="flabel">🖼 Фото или эмодзи</label>
+          <div class="photo-upload-area" id="photoUploadArea" onclick="triggerPhotoUpload()">
+            <img class="photo-preview" id="photoPreview" src="" alt="Фото товара"/>
+            <div class="photo-upload-placeholder" id="photoPlaceholder">
+              <div class="photo-upload-icon">📷</div>
+              <div class="photo-upload-text">Нажми чтобы загрузить фото</div>
+            </div>
+            <button class="photo-remove" id="photoRemove" onclick="event.stopPropagation();removePhoto()">×</button>
+          </div>
+          <input type="file" id="photoInput" accept="image/*" style="display:none" onchange="handlePhoto(this)">
+          <input class="finput" type="text" id="np-emoji" placeholder="Или эмодзи (🍜)" oninput="updateEmoji(this.value)" style="text-align:center;font-size:16px;margin-top:4px;">
+        </div>
+        <input class="finput" type="text" id="np-name" placeholder="Название товара" style="align-self:center;">
+      </div>
+      <div class="form-row">
+        <input class="finput" type="text" id="np-sub" placeholder="Страна, вес (Корея, 90г)" style="margin-bottom:0;">
+        <input class="finput" type="text" id="np-price" placeholder="Цена (от 90 ₽)" style="margin-bottom:0;">
+      </div>
+      <textarea class="finput" id="np-desc" rows="2" placeholder="Описание товара..."></textarea>
+      <div class="form-row">
+        <div>
+          <label class="flabel">📂 Категория *</label>
+          <select class="fselect" id="np-cat">
+            <option value="">Выберите категорию</option>
+          </select>
+        </div>
+        <div>
+          <label class="flabel">🏷 Метка</label>
+          <select class="fselect" id="np-badge">
+            <option value="">Без метки</option>
+            <option value="hit">🔥 Хит</option>
+            <option value="new">✨ Новинка</option>
+            <option value="top">⭐ Топ</option>
+          </select>
         </div>
       </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-time break">🍽️</div>
-      <div class="tl-content break-card">
-        <div class="tl-title">Обед · 30 минут · 14:00–14:30</div>
+      <div style="display:flex;gap:8px;margin-top:6px;">
+        <button class="add-form-btn" onclick="addProduct()" style="flex:2;">Добавить товар ✨</button>
+        <button class="add-form-btn" onclick="cancelAddForm()" style="flex:1;background:var(--card);color:var(--ink);border:1.5px solid var(--border);">Отмена</button>
       </div>
     </div>
 
-    <div class="tl-item">
-      <div class="tl-time" style="font-size:8px">14:30</div>
-      <div class="tl-content">
-        <div class="tl-time-label">14:30–16:00 · 1.5 часа</div>
-        <div class="tl-title">🔍 Разбор итоговой работы</div>
-        <div class="tl-body">
-          <ul>
-            <li class="check">Сначала ты говоришь что получилось хорошо (обязательно!)</li>
-            <li>Затем разбираешь ошибки — конструктивно, без критики</li>
-            <li>Работа над конкретными ошибками на типсах</li>
-            <li class="star">Как общаться с клиентом, назначать цену, развиваться дальше</li>
-          </ul>
-          <div class="tip-green">Важно: ученица должна уйти с уверенностью, а не с сомнениями</div>
+    <!-- ПОИСК -->
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input class="search-input" type="text" id="searchInput" placeholder="Поиск товаров..." oninput="onSearch(this.value)">
+      <button class="search-clear" id="searchClear" onclick="clearSearch()">×</button>
+    </div>
+
+    <!-- ФИЛЬТРЫ -->
+    <div class="filters" id="filtersContainer"></div>
+    <button class="show-cat-btn" onclick="toggleCatManageForm()">⚙️ Управление категориями</button>
+
+    <!-- ФОРМА УПРАВЛЕНИЯ КАТЕГОРИЯМИ -->
+    <div class="add-form" id="catManageForm">
+      <div class="add-form-title">📂 Категории товаров</div>
+      <div id="catManageList" class="cat-manage-list"></div>
+      <div style="display:flex;gap:10px;align-items:center;margin-top:10px;margin-bottom:8px;">
+        <div class="cat-photo-upload" id="catPhotoArea" onclick="triggerCatPhoto()" title="Фото категории">
+          <img class="cat-photo-img" id="catPhotoPreview" src="" alt="Фото категории"/>
+          <span class="cat-photo-icon" id="catPhotoIcon">📷</span>
+          <button class="cat-photo-remove" id="catPhotoRemove" onclick="event.stopPropagation();removeCatPhoto()">×</button>
         </div>
+        <input class="finput" type="text" id="newCatEmoji" placeholder="Эмодзи (🍱)" style="text-align:center;margin-bottom:0;width:80px;flex-shrink:0;">
+        <input class="finput" type="text" id="newCatName" placeholder="Название категории" style="margin-bottom:0;flex:1;">
       </div>
+      <div style="font-size:11px;color:var(--ink3);margin-bottom:10px;">Фото или эмодзи — выбери что-то одно. Фото приоритетнее.</div>
+      <input type="file" id="catPhotoInput" accept="image/*" style="display:none" onchange="handleCatPhoto(this)">
+      <button class="add-form-btn" onclick="addCategory()">Добавить категорию ✨</button>
     </div>
 
-    <div class="tl-item">
-      <div class="tl-time" style="font-size:8px">16:00</div>
-      <div class="tl-content">
-        <div class="tl-time-label">16:00–17:00 · 1 час</div>
-        <div class="tl-title">📝 Итоговый тест</div>
-        <div class="tl-body">Устный экзамен по всем темам курса:</div>
-      </div>
-    </div>
-
+    <div class="grid" id="productsGrid"></div>
+    <div class="empty-state" id="emptyState">😿 Ничего не найдено</div>
   </div>
-
-  <div class="test-card">
-    <h3>🎓 Вопросы для экзамена</h3>
-    <div class="test-q">Покажи на своём пальце: где кутикула, где эпонихий, где птеригий?</div>
-    <div class="test-q">Что такое гипонихий и почему его нельзя трогать?</div>
-    <div class="test-q">На фото — что за заболевание? Можно ли работать?</div>
-    <div class="test-q">В какой последовательности делается покрытие? (назови все 15 шагов)</div>
-    <div class="test-q">Какие обороты при снятии? При кутикуле? При шлифовке?</div>
-    <div class="test-q">Какую базу выбрать для тонких травмированных ногтей?</div>
-    <div class="test-q">Пропорция раствора аламинол? Режим сухожара?</div>
-    <div class="test-q">Формула идеальных пропорций ногтей?</div>
-  </div>
-
-  <div class="timeline" style="margin-top:16px">
-    <div class="tl-item">
-      <div class="tl-time end">🎓</div>
-      <div class="tl-content end-card">
-        <div class="tl-time-label">17:00–18:00</div>
-        <div class="tl-title">🌸 Завершение курса</div>
-        <div class="tl-body">
-          <ul>
-            <li class="check">Обратная связь: что понравилось, что можно улучшить</li>
-            <li class="check">Советы по дальнейшему развитию и первым клиентам</li>
-            <li class="star">Вручение сертификата + фото на память</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="cert">
-    <div class="cert-icon">🏆</div>
-    <h3>Сертификат об окончании курса</h3>
-    <p>Базовый курс по маникюру успешно пройден · 4 дня · 22 часа</p>
-  </div>
-
 </div>
 
-<footer>🌸 План курса по маникюру · 4 дня обучения</footer>
-<button class="scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<!-- ══ ТОВАР ══ -->
+<div id="page-product" class="page">
+  <div class="wrap">
+    <button class="prod-back" onclick="backToHome()">← Назад</button>
+    <div class="prod-hero">
+      <div class="prod-emoji-big" id="p-emoji">🍜</div>
+      <div class="prod-title" id="p-name"></div>
+      <div class="prod-origin" id="p-origin"></div>
+      <div class="prod-price-big" id="p-price"></div>
+      <div class="prod-rat">
+        <span style="color:#F59E0B;font-size:14px" id="p-stars-disp">☆☆☆☆☆</span>
+        <span style="font-weight:800;color:var(--yellow)" id="p-avg">—</span>
+        <span style="font-size:12px;color:var(--ink3)" id="p-cnt">нет отзывов</span>
+      </div>
+    </div>
+    <div class="prod-desc-card" id="p-desc"></div>
+    <div class="prod-action-row">
+      <button class="btn-share" id="shareBtn" onclick="shareProduct()">🔗 Поделиться</button>
+      <a class="btn btn-wa" href="https://wa.me/79954742204" target="_blank" style="flex:1;justify-content:center;border-radius:14px;padding:13px;">💬 WhatsApp</a>
+    </div>
+    <div class="sec-title" style="margin-bottom:12px" id="p-rev-title">Отзывы</div>
+    <div class="revlist" id="p-reviews"></div>
+    <div class="addrev">
+      <div class="addrev-title">Оставить отзыв на товар 💬</div>
+      <div style="font-size:12px;color:var(--ink3);margin-bottom:10px;">Один отзыв на товар с устройства — как в 2ГИС</div>
+      <input class="finput" type="text" id="pr-name" placeholder="Ваше имя"/>
+      <div class="spicker" id="pr-stars">
+        <button class="sp" data-v="1">★</button><button class="sp" data-v="2">★</button>
+        <button class="sp" data-v="3">★</button><button class="sp" data-v="4">★</button>
+        <button class="sp" data-v="5">★</button>
+      </div>
+      <textarea class="finput" id="pr-text" rows="3" placeholder="Расскажите об этом товаре..."></textarea>
+      <div class="review-photo-upload" id="prPhotoArea" onclick="triggerReviewPhoto('pr')">
+        <img class="review-photo-preview" id="prPhotoPreview" src="" alt="Фото к отзыву"/>
+        <div class="review-photo-placeholder" id="prPhotoPlaceholder">📷 Добавить фото (необязательно)</div>
+        <button class="review-photo-remove" id="prPhotoRemove" onclick="event.stopPropagation();removeReviewPhoto('pr')">×</button>
+      </div>
+      <input type="file" id="prPhotoInput" accept="image/*" style="display:none" onchange="handleReviewPhoto(this,'pr')">
+      <button class="btn-send" id="pr-send" onclick="submitProductReview()">Отправить отзыв ✨</button>
+      <div class="msg-ok" id="pr-ok">🎉 Спасибо! Ваш отзыв сохранён на сайте.</div>
+      <div class="msg-err" id="pr-err">❌ Заполните имя, оценку и текст.</div>
+      <div class="msg-already" id="pr-already">⚠️ Вы уже оставили отзыв на этот товар — один отзыв на товар, как в 2ГИС!</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ОТЗЫВЫ О МАГАЗИНЕ ══ -->
+<div id="page-reviews" class="page">
+  <div class="wrap">
+    <div class="sec-label">Мнения покупателей</div>
+    <div class="sec-title">Отзывы о магазине 💖</div>
+    <div class="rating-top">
+      <div class="rnum" id="shopRatingNum">5.0</div>
+      <div><div class="rstars-big">★★★★★</div><div class="rcount" id="shopRatingCount">261 отзыв в 2ГИС</div></div>
+    </div>
+    <div class="revlist" id="shopRevList"></div>
+    <!-- КНОПКА 2ГИС (только для админа) -->
+    <button class="show-gis-btn" onclick="toggleGisForm()">🗺 Добавить отзыв из 2ГИС</button>
+
+    <!-- ФОРМА ОТЗЫВА ИЗ 2ГИС -->
+    <div class="gis-form" id="gisForm">
+      <div class="gis-form-title">🗺 Отзыв из 2ГИС</div>
+      <div class="gis-form-sub">Скопируй отзыв из 2ГИС и заполни форму</div>
+      <input class="finput" type="text" id="gis-name" placeholder="Имя автора из 2ГИС" />
+      <input class="finput" type="text" id="gis-date" placeholder="Дата (например: 15 июня 2026)" />
+      <div class="gis-star-row" id="gis-stars">
+        <button class="gis-sp" data-v="1">★</button><button class="gis-sp" data-v="2">★</button>
+        <button class="gis-sp" data-v="3">★</button><button class="gis-sp" data-v="4">★</button>
+        <button class="gis-sp" data-v="5">★</button>
+      </div>
+      <textarea class="finput" id="gis-text" rows="3" placeholder="Текст отзыва из 2ГИС..."></textarea>
+      <div style="display:flex;gap:8px;margin-top:6px;">
+        <button class="gis-form-btn" onclick="submitGisReview()" style="flex:2;">Добавить отзыв 🗺</button>
+        <button class="gis-form-btn" onclick="toggleGisForm()" style="flex:1;background:var(--card);color:var(--ink);border:1.5px solid var(--border);">Отмена</button>
+      </div>
+    </div>
+
+    <a class="dgis-link" id="allGisReviewsLink" href="https://2gis.ru/chelyabinsk/firm/70000001112641386/tab/reviews" target="_blank">📖 Все 261 отзыв в 2ГИС ↗</a>
+    <div class="addrev">
+      <div class="addrev-title">Оставить отзыв о магазине 💖</div>
+      <div style="font-size:12px;color:var(--ink3);margin-bottom:10px;">Один отзыв с устройства — как в 2ГИС</div>
+      <input class="finput" type="text" id="sr-name" placeholder="Ваше имя"/>
+      <div class="spicker" id="sr-stars">
+        <button class="sp" data-v="1">★</button><button class="sp" data-v="2">★</button>
+        <button class="sp" data-v="3">★</button><button class="sp" data-v="4">★</button>
+        <button class="sp" data-v="5">★</button>
+      </div>
+      <textarea class="finput" id="sr-text" rows="3" placeholder="Расскажите о своём визите в Neko Market..."></textarea>
+      <div class="review-photo-upload" id="srPhotoArea" onclick="triggerReviewPhoto('sr')">
+        <img class="review-photo-preview" id="srPhotoPreview" src="" alt="Фото к отзыву"/>
+        <div class="review-photo-placeholder" id="srPhotoPlaceholder">📷 Добавить фото (необязательно)</div>
+        <button class="review-photo-remove" id="srPhotoRemove" onclick="event.stopPropagation();removeReviewPhoto('sr')">×</button>
+      </div>
+      <input type="file" id="srPhotoInput" accept="image/*" style="display:none" onchange="handleReviewPhoto(this,'sr')">
+      <button class="btn-send" id="sr-send" onclick="submitShopReview()">Отправить отзыв ✨</button>
+      <div class="msg-ok" id="sr-ok">🎉 Спасибо! Ваш отзыв сохранён на сайте Neko Market.</div>
+      <div class="msg-err" id="sr-err">❌ Заполните имя, оценку и текст.</div>
+      <div class="msg-already" id="sr-already">⚠️ Вы уже оставили отзыв о магазине с этого устройства.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ АДРЕС ══ -->
+<div id="page-info" class="page">
+  <div class="wrap">
+    <div class="sec-label">Где нас найти</div>
+    <div class="sec-title">Адрес и контакты 📍</div>
+    <div class="agrid">
+      <div class="acard"><div class="aicon">📍</div><div><div class="atitle">Адрес</div><div class="atext">ул. Плеханова, 43<br>Советский район</div><div class="ahint">Челябинск, 454091</div></div></div>
+      <div class="acard"><div class="aicon">📞</div><div><div class="atitle">Телефон</div><div class="atext">+7 995 474-22-04</div><div class="ahint">звонки и WhatsApp</div></div></div>
+      <div class="acard"><div class="aicon">💙</div><div><div class="atitle">ВКонтакте</div><div class="atext"><a href="https://vk.com/nekomarket74" target="_blank" style="color:var(--pink);font-weight:700;">vk.com/nekomarket74</a></div></div></div>
+      <div class="acard"><div class="aicon">✉️</div><div><div class="atitle">Email</div><div class="atext">neko.market@mail.ru</div></div></div>
+    </div>
+    <div class="open-pill"><div class="dot"></div> Сейчас открыто</div>
+    <div style="background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:16px;">
+      <div class="hrow"><span class="hday">Ежедневно</span><span class="htime">10:00 – 22:00</span></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;">
+      <a class="btn btn-white" href="https://2gis.ru/chelyabinsk/geo/70000001112641386" target="_blank" style="border:1.5px solid var(--border);color:var(--pink);">🗺 Маршрут в 2ГИС</a>
+      <a class="btn btn-vk" href="https://vk.com/nekomarket74" target="_blank">💙 ВКонтакте</a>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<footer class="footer">
+  <div class="footer-logo">🐾 Neko Market</div>
+  ул. Плеханова, 43, Челябинск &nbsp;·&nbsp;
+  <a href="https://2gis.ru/chelyabinsk/geo/70000001112641386" target="_blank">2ГИС</a> &nbsp;·&nbsp;
+  <a href="https://vk.com/nekomarket74" target="_blank">ВКонтакте</a>
+</footer>
 
 <script>
-function showPage(idx, btn) {
-  document.querySelectorAll('.page').forEach((p,i) => p.classList.toggle('active', i === idx));
-  document.querySelectorAll('.tab').forEach((b,i) => b.classList.toggle('active', i === idx));
-  window.scrollTo({top:0, behavior:'smooth'});
+// ══════════════════════════════════════════════════
+// ДАННЫЕ — ТОВАРЫ ПО УМОЛЧАНИЮ (с категориями)
+// ══════════════════════════════════════════════════
+const DEFAULT_PRODUCTS = [
+  {id:'doshirak', emoji:'🍜', name:'Доширак',        sub:'разные вкусы, Корея',   price:'от 90 ₽',  badge:'hit', cat:'lapsha',
+   desc:'Корейская лапша быстрого приготовления. В наличии несколько вкусов — говядина, курица, морепродукты, острый. Заливается кипятком, готовится за несколько минут.'},
+  {id:'lapsha',   emoji:'🍝', name:'Лапша удон / соба', sub:'Япония, 200–300г',  price:'от 150 ₽', badge:'',    cat:'lapsha',
+   desc:'Японская лапша удон и соба — в отличие от Доширака, не быстрого приготовления, нужно варить. Подходит для домашних блюд азиатской кухни.'},
+  {id:'sneki',    emoji:'🍿', name:'Снеки и чипсы',  sub:'Корея, Китай, Япония', price:'от 80 ₽',  badge:'hit', cat:'sneki',
+   desc:'Азиатские снеки и чипсы — рисовые чипсы, крекеры, в том числе острые варианты. Ассортимент периодически обновляется.'},
+  {id:'sladosti', emoji:'🍬', name:'Сладости',       sub:'Pocky, мочи, Oreo Asia',price:'от 100 ₽',badge:'top', cat:'sladosti',
+   desc:'Азиатские сладости — шоколадные палочки Pocky, моти с начинками, версии Oreo с необычными вкусами. Уточняйте наличие конкретных видов в магазине.'},
+  {id:'soy',      emoji:'🌱', name:'Соевое мясо',    sub:'кусочки, Китай', price:'от 120 ₽',badge:'',    cat:'soy',
+   desc:'Сушёные кусочки соевого белка — растительная альтернатива мясу, популярна в азиатской кухне. Перед готовкой обычно замачивают в воде.'},
+  {id:'griby',    emoji:'🍄', name:'Грибы шитаки',   sub:'сушёные / консервированные', price:'от 150 ₽',badge:'new', cat:'sousy',
+   desc:'Грибы шитаки, используются в азиатской кухне — для супов, рамена, жаркого. Уточняйте у продавца текущий формат поставки.'},
+  {id:'sousy',    emoji:'🥫', name:'Соусы',           sub:'соевый, чили, терияки', price:'от 130 ₽',badge:'new', cat:'sousy',
+   desc:'Соусы для азиатской кухни — соевый, терияки, острый чили. Конкретный ассортимент марок уточняйте в магазине.'},
+];
+
+// ══════════════════════════════════════════════════
+// КАТЕГОРИИ ТОВАРОВ (можно добавлять/удалять через админку)
+// ══════════════════════════════════════════════════
+const DEFAULT_CATEGORIES = [
+  {id:'lapsha', emoji:'🍜', name:'Лапша'},
+  {id:'sneki', emoji:'🍿', name:'Снеки'},
+  {id:'sladosti', emoji:'🍬', name:'Сладости'},
+  {id:'soy', emoji:'🌱', name:'Соевое мясо'},
+  {id:'sousy', emoji:'🥫', name:'Соусы'},
+];
+
+function getCategories(){
+  const saved = localStorage.getItem('neko_categories');
+  return saved ? JSON.parse(saved) : DEFAULT_CATEGORIES;
 }
-// overview cards click
-document.querySelectorAll('.ov-card').forEach((card, i) => {
-  card.onclick = () => {
-    const tabs = document.querySelectorAll('.tab');
-    showPage(i+1, tabs[i+1]);
-  };
+function saveCategories(list){ localStorage.setItem('neko_categories', JSON.stringify(list)); }
+
+// Сам пароль администратора здесь больше не хранится — он проверяется
+// на серверах Firebase Authentication (см. tryLogin). ADMIN_EMAIL — это
+// не настоящий почтовый ящик, а просто служебный логин для единственного
+// админ-аккаунта, требуемый форматом Firebase Auth.
+const ADMIN_EMAIL = 'admin@neko-market-179a7.firebaseapp.com';
+const AV = ['av0','av1','av2','av3'];
+const BADGE = {hit:'<span class="pbadge b-hit">🔥 Хит</span>',new:'<span class="pbadge b-new">✨ Новинка</span>',top:'<span class="pbadge b-top">⭐ Топ</span>',''  :''};
+
+// Реальные показатели магазина в 2ГИС — правь вручную, когда рейтинг
+// или число отзывов там изменится. Это единственное место в коде,
+// где эти цифры заданы — раньше они были зашиты текстом в 3 местах HTML.
+const GIS_RATING = 5.0;
+const GIS_REVIEW_COUNT = 261;
+
+function pluralizeRu(n, one, few, many){
+  const n100 = Math.abs(n) % 100, n10 = n % 10;
+  if(n100 >= 11 && n100 <= 14) return many;
+  if(n10 === 1) return one;
+  if(n10 >= 2 && n10 <= 4) return few;
+  return many;
+}
+
+
+// ══════════════════════════════════════════════════
+// CONFIRM POPUP
+// ══════════════════════════════════════════════════
+function showConfirm(title, sub, onYes){
+  document.getElementById('confirmTitle').textContent = title;
+  document.getElementById('confirmSub').textContent = sub;
+  document.getElementById('confirmYes').onclick = ()=>{ closeConfirm(); onYes(); };
+  document.getElementById('confirmOverlay').classList.add('show');
+}
+function closeConfirm(){
+  document.getElementById('confirmOverlay').classList.remove('show');
+}
+
+// ══════════════════════════════════════════════════
+// ХРАНИЛИЩЕ
+// ══════════════════════════════════════════════════
+function getProducts(){
+  const hidden = getHidden();
+  const extra = getExtraProducts();
+  // Стандартные минус скрытые + добавленные админом
+  return [...DEFAULT_PRODUCTS.filter(p=>!hidden.includes(p.id)), ...extra];
+}
+function getExtraProducts(){ const s=localStorage.getItem('neko_extra_products'); return s?JSON.parse(s):[]; }
+function getHidden(){ const s=localStorage.getItem('neko_hidden'); return s?JSON.parse(s):[]; }
+function saveHidden(list){ localStorage.setItem('neko_hidden', JSON.stringify(list)); }
+function saveExtraProducts(list){ localStorage.setItem('neko_extra_products', JSON.stringify(list)); }
+
+function getProdRevs(id){ const s=localStorage.getItem('rev_p_'+id); return s?JSON.parse(s):[]; }
+function saveProdRevs(id,r){ localStorage.setItem('rev_p_'+id, JSON.stringify(r)); }
+
+function getShopRevs(){
+  const s=localStorage.getItem('rev_shop');
+  return s?JSON.parse(s):[
+    {id:'s1',name:'Алина М.',stars:5,text:'Обожаю этот магазин! Атмосфера супер — розово, аниме, уютно. Продавцы добрые, всё объяснят.',date:'21 июня 2026',source:'2gis'},
+    {id:'s2',name:'Даниил К.',stars:5,text:'Нашёл через 2ГИС, не пожалел. Огромный выбор снеков и соусов. Соевое мясо отличное!',date:'15 июня 2026',source:'2gis'},
+    {id:'s3',name:'Света В.',stars:5,text:'Любимый магазинчик! Мочи и Pocky — лучшие. Оформление как в Японии!',date:'8 июня 2026',source:'2gis'},
+  ];
+}
+function saveShopRevs(r){ localStorage.setItem('rev_shop', JSON.stringify(r)); }
+
+function voted(k){ return localStorage.getItem('voted_'+k)==='1'; }
+function markVoted(k){ localStorage.setItem('voted_'+k,'1'); }
+
+function uid(){ return Math.random().toString(36).slice(2,9); }
+const RU_MONTHS = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+function fmtDate(){
+  const d=new Date();
+  return d.getDate()+' '+RU_MONTHS[d.getMonth()]+' '+d.getFullYear();
+}
+// Дата отзыва хранится как текст ("21 июня 2026") для показа на странице.
+// Firestore orderBy по такому текстовому полю сортирует его как строку,
+// а не как дату — "21 июня" может оказаться "позже" чем "8 июня", потому
+// что '2' < '8' по алфавиту. Поэтому сортируем сами, распарсив дату.
+function parseRuDate(str){
+  if(!str) return 0;
+  const m = String(str).trim().match(/^(\d{1,2})\s+([а-яёА-ЯЁ]+)\s+(\d{4})$/);
+  if(!m) return 0;
+  const day = parseInt(m[1], 10);
+  const monthIdx = RU_MONTHS.indexOf(m[2].toLowerCase());
+  const year = parseInt(m[3], 10);
+  if(monthIdx === -1) return 0;
+  return new Date(year, monthIdx, day).getTime();
+}
+// Экранирование пользовательского текста перед вставкой в innerHTML —
+// без этого через имя/текст отзыва (или название товара/категории,
+// раз пароль админа и так виден в коде) можно вставить рабочий <script>.
+function escapeHtml(str){
+  if(str===null || str===undefined) return '';
+  return String(str)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#39;');
+}
+
+// ══════════════════════════════════════════════════
+// НАВИГАЦИЯ
+// ══════════════════════════════════════════════════
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  const idx={home:0,reviews:1,info:2};
+  if(idx[name]!==undefined) document.querySelectorAll('.nav-tab')[idx[name]].classList.add('active');
+  window.scrollTo(0,0);
+  if(name==='reviews'){
+    loadShopRevs().then(revs => {
+      if(!document.getElementById('page-reviews').classList.contains('active')) return;
+      if(revs && revs.length > 0) saveShopRevs(revs);
+      renderShopRevs();
+    });
+    renderShopRevs();
+  }
+}
+
+// ══════════════════════════════════════════════════
+// ФИЛЬТР И ПОИСК
+// ══════════════════════════════════════════════════
+let activeCat='all', searchQ='';
+
+function renderFilters(){
+  const cats = getCategories();
+  const container = document.getElementById('filtersContainer');
+  let html = `<button class="fbtn ${activeCat==='all'?'active':''}" onclick="setFilter('all',this)">🐱 Все</button>`;
+  cats.forEach(c => {
+    const icon = c.photo
+      ? `<img class="fbtn-img" src="${c.photo}" alt="${escapeHtml(c.name)}">`
+      : (c.emoji || '📦');
+    html += `<button class="fbtn ${activeCat===c.id?'active':''}" onclick="setFilter('${c.id}',this)">${icon} ${escapeHtml(c.name)}</button>`;
+  });
+  container.innerHTML = html;
+}
+
+function setFilter(cat,btn){
+  activeCat=cat;
+  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  // сбрасываем поиск при смене категории
+  searchQ='';
+  const si=document.getElementById('searchInput');
+  if(si){ si.value=''; }
+  document.getElementById('searchClear').classList.remove('show');
+  renderProducts();
+}
+function onSearch(val){
+  searchQ=val.trim().toLowerCase();
+  document.getElementById('searchClear').classList.toggle('show', searchQ.length>0);
+  renderProducts();
+}
+function clearSearch(){
+  document.getElementById('searchInput').value='';
+  searchQ='';
+  document.getElementById('searchClear').classList.remove('show');
+  renderProducts();
+}
+
+// ══════════════════════════════════════════════════
+// РЕНДЕР ТОВАРОВ
+// ══════════════════════════════════════════════════
+function avgRating(id){
+  const r=getProdRevs(id); if(!r.length) return null;
+  return (r.reduce((s,x)=>s+x.stars,0)/r.length).toFixed(1);
+}
+function starsStr(n){ return '★'.repeat(n)+'☆'.repeat(5-n); }
+
+function renderProducts(){
+  let list = getProducts();
+  // фильтр по категории
+  if(activeCat!=='all') list=list.filter(p=>p.cat===activeCat);
+  // фильтр по поиску
+  if(searchQ) list=list.filter(p=>
+    p.name.toLowerCase().includes(searchQ)||
+    (p.sub||'').toLowerCase().includes(searchQ)||
+    (p.desc||'').toLowerCase().includes(searchQ)
+  );
+
+  const grid=document.getElementById('productsGrid');
+  const empty=document.getElementById('emptyState');
+  const isAdmin=document.body.classList.contains('admin-mode');
+
+  if(!list.length){ grid.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+
+  grid.innerHTML=list.map(p=>{
+    const avg=avgRating(p.id), cnt=getProdRevs(p.id).length;
+    const isExtra=!DEFAULT_PRODUCTS.find(d=>d.id===p.id);
+    const imgHtml = p.photo
+      ? `<img class="pcard-img" src="${p.photo}" alt="${escapeHtml(p.name)}" loading="lazy"/>`
+      : `<div class="pemoji">${escapeHtml(p.emoji)||'📦'}</div>`;
+    return `<div class="pcard" onclick="showProduct('${p.id}')">
+      ${isAdmin?`<button class="admin-edit" onclick="event.stopPropagation();openCatEdit('${p.id}')" title="Изменить категорию">✏️</button>`:''}
+      ${isAdmin?`<button class="admin-del" onclick="event.stopPropagation();deleteProduct('${p.id}')">×</button>`:''}
+      ${imgHtml}
+      <div class="pbody">
+        ${BADGE[p.badge]||''}
+        <div class="pname">${escapeHtml(p.name)}</div>
+        <div class="psub">${escapeHtml(p.sub)}</div>
+        <div class="pprice">${escapeHtml(p.price)}</div>
+        <div class="pstars-row">${avg?'★'+avg+' ('+cnt+')':'Нет отзывов'}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════════════
+// СТРАНИЦА ТОВАРА
+// ══════════════════════════════════════════════════
+let curProdId=null;
+
+function showProduct(id){
+  const p=getProducts().find(x=>x.id===id);
+  if(!p){ showToast('😿 Товар не найден'); backToHome(); return; }
+  curProdId=id;
+
+  if(p.photo){
+    document.getElementById('p-emoji').innerHTML = `<img src="${p.photo}" alt="${escapeHtml(p.name)}" style="width:100px;height:100px;object-fit:cover;border-radius:16px;">`;
+  } else {
+    document.getElementById('p-emoji').textContent = p.emoji || '📦';
+  }
+  document.getElementById('p-name').textContent=p.name;
+  document.getElementById('p-origin').textContent=p.sub;
+  document.getElementById('p-price').textContent=p.price;
+  document.getElementById('p-desc').textContent=p.desc||'';
+  document.getElementById('p-rev-title').textContent='Отзывы на '+p.name+' 💬';
+
+  // Загружаем свежие отзывы из Firebase
+  loadProdRevs(id).then(revs => {
+    if(curProdId !== id) return; // пользователь уже ушёл с этой страницы — не перерисовываем
+    if(revs && revs.length > 0) saveProdRevs(id, revs);
+    renderProdRevs(id);
+    updateProdRating(id);
+  });
+  renderProdRevs(id);
+  updateProdRating(id);
+
+  const already=voted('prod_'+id);
+  document.getElementById('pr-already').style.display=already?'block':'none';
+  document.getElementById('pr-send').style.display=already?'none':'';
+  document.getElementById('pr-ok').style.display='none';
+  document.getElementById('pr-err').style.display='none';
+
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('page-product').classList.add('active');
+  window.scrollTo(0,0);
+  initStars('pr');
+}
+
+function updateProdRating(id){
+  const avg=avgRating(id), cnt=getProdRevs(id).length;
+  document.getElementById('p-avg').textContent=avg||'—';
+  document.getElementById('p-cnt').textContent=cnt?cnt+' '+pluralizeRu(cnt,'отзыв','отзыва','отзывов'):'нет отзывов';
+  document.getElementById('p-stars-disp').textContent=avg?'★★★★★':'☆☆☆☆☆';
+}
+
+function renderProdRevs(id){
+  const revs=getProdRevs(id);
+  const isAdmin=document.body.classList.contains('admin-mode');
+  const el=document.getElementById('p-reviews');
+  if(!revs.length){ el.innerHTML='<div style="color:var(--ink3);font-size:13px;padding:12px 0;">Отзывов пока нет — будьте первым! 🌸</div>'; return; }
+  el.innerHTML=revs.map((r,i)=>`
+    <div class="rcard">
+      ${isAdmin?`<button class="rev-del" onclick="delProdRev('${id}','${r.id}')">Удалить</button>`:''}
+      <div class="rtop">
+        <div class="av ${AV[i%4]}">${escapeHtml(r.name.slice(0,2).toUpperCase())}</div>
+        <div><div class="rname">${escapeHtml(r.name)}</div><div class="rstars-sm">${starsStr(r.stars)}</div></div>
+        <div class="rdate">${escapeHtml(r.date)}</div>
+      </div>
+      <div class="rtext">${escapeHtml(r.text)}</div>
+      ${r.photo?`<img class="rcard-photo" src="${r.photo}" alt="Фото к отзыву" onclick="lightboxPhoto('${r.photo}')"/>`:''}
+      <span class="rtag rtag-site">💬 Отзыв на сайте Neko Market</span>
+    </div>`).join('');
+}
+
+function backToHome(){ showPage('home'); }
+
+// ══════════════════════════════════════════════════
+// ОТЗЫВЫ НА МАГАЗИН
+// ══════════════════════════════════════════════════
+function renderShopRevs(){
+  const revs=getShopRevs();
+  const isAdmin=document.body.classList.contains('admin-mode');
+  const el=document.getElementById('shopRevList');
+  if(!revs.length){ el.innerHTML='<div style="color:var(--ink3);font-size:13px;padding:12px 0;">Пока нет отзывов — оставьте первый! 💖</div>'; return; }
+  el.innerHTML=revs.map((r,i)=>{
+    const tagClass=r.source==='2gis'?'rtag-2gis':'rtag-site';
+    const tagText=r.source==='2gis'?'🗺 Отзыв из 2ГИС':'💬 Отзыв на сайте Neko Market';
+    return `<div class="rcard">
+      ${isAdmin?`<button class="rev-del" onclick="delShopRev('${r.id}')">Удалить</button>`:''}
+      <div class="rtop">
+        <div class="av ${AV[i%4]}">${escapeHtml(r.name.slice(0,2).toUpperCase())}</div>
+        <div><div class="rname">${escapeHtml(r.name)}</div><div class="rstars-sm">${starsStr(r.stars)}</div></div>
+        <div class="rdate">${escapeHtml(r.date)}</div>
+      </div>
+      <div class="rtext">${escapeHtml(r.text)}</div>
+      ${r.photo?`<img class="rcard-photo" src="${r.photo}" alt="Фото к отзыву" onclick="lightboxPhoto('${r.photo}')"/>`:''}
+      <span class="rtag ${tagClass}">${tagText}</span>
+    </div>`;
+  }).join('');
+  renderShopRating();
+}
+
+// ══════════════════════════════════════════════════
+// РЕЙТИНГ МАГАЗИНА (шапка на главной + страница отзывов)
+// ══════════════════════════════════════════════════
+// Локальные отзывы с source:'2gis' — это лишь витрина нескольких
+// РЕАЛЬНЫХ отзывов из 2ГИС (стартовые + скопированные админом вручную),
+// они уже входят в GIS_REVIEW_COUNT и не должны считаться повторно.
+// Отзывы с source:'site' оставлены прямо на сайте и в 2ГИС ещё не
+// попали — поэтому они ПРИБАВЛЯЮТСЯ к реальным цифрам, а не подменяют их.
+function renderShopRating(){
+  const siteOnly = getShopRevs().filter(r=>r.source==='site');
+  const totalCount = GIS_REVIEW_COUNT + siteOnly.length;
+  const totalStars = GIS_RATING*GIS_REVIEW_COUNT + siteOnly.reduce((s,r)=>s+r.stars,0);
+  const avg = (totalStars/totalCount).toFixed(1);
+
+  const revWord = pluralizeRu(GIS_REVIEW_COUNT,'отзыв','отзыва','отзывов');
+  const gisCountText = GIS_REVIEW_COUNT+' '+revWord+' в 2ГИС' +
+    (siteOnly.length ? ' + '+siteOnly.length+' '+pluralizeRu(siteOnly.length,'отзыв','отзыва','отзывов')+' на сайте' : '');
+  const gisRatingText = GIS_REVIEW_COUNT+' '+pluralizeRu(GIS_REVIEW_COUNT,'оценка','оценки','оценок')+' в 2ГИС' +
+    (siteOnly.length ? ' + '+siteOnly.length+' на сайте' : '');
+
+  const heroNum=document.getElementById('heroRatingNum'), heroSub=document.getElementById('heroRatingSub');
+  if(heroNum) heroNum.textContent=avg;
+  if(heroSub) heroSub.textContent=gisRatingText;
+
+  const shopNum=document.getElementById('shopRatingNum'), shopCount=document.getElementById('shopRatingCount');
+  if(shopNum) shopNum.textContent=avg;
+  if(shopCount) shopCount.textContent=gisCountText;
+
+  const gisLink=document.getElementById('allGisReviewsLink');
+  if(gisLink) gisLink.textContent='📖 Все '+GIS_REVIEW_COUNT+' '+revWord+' в 2ГИС ↗';
+}
+
+// ══════════════════════════════════════════════════
+// ЗВЁЗДЫ
+// ══════════════════════════════════════════════════
+const starSel={pr:0,sr:0};
+function initStars(p){
+  starSel[p]=0;
+  const btns=document.querySelectorAll('#'+p+'-stars .sp');
+  btns.forEach(b=>{
+    b.classList.remove('on');
+    b.onclick=()=>{ starSel[p]=+b.dataset.v; btns.forEach(x=>x.classList.toggle('on',+x.dataset.v<=starSel[p])); };
+    b.onmouseenter=()=>btns.forEach(x=>x.classList.toggle('on',+x.dataset.v<=+b.dataset.v));
+    b.onmouseleave=()=>btns.forEach(x=>x.classList.toggle('on',+x.dataset.v<=starSel[p]));
+  });
+}
+initStars('pr'); initStars('sr');
+
+// ══════════════════════════════════════════════════
+// ОТПРАВКА ОТЗЫВОВ
+// ══════════════════════════════════════════════════
+function submitProductReview(){
+  const name=document.getElementById('pr-name').value.trim();
+  const text=document.getElementById('pr-text').value.trim();
+  const stars=starSel.pr;
+  const prodId=curProdId;
+  ['pr-ok','pr-err'].forEach(id=>document.getElementById(id).style.display='none');
+  if(!name||!text||!stars){ document.getElementById('pr-err').style.display='block'; return; }
+  if(voted('prod_'+prodId)){ document.getElementById('pr-already').style.display='block'; return; }
+
+  const revId=uid();
+  const photo=reviewPhotoData.pr||null;
+
+  const newRev = {id:revId,name,stars,text,date:fmtDate(),photo};
+  // Сохраняем локально
+  const revs=getProdRevs(prodId);
+  revs.unshift(newRev);
+  saveProdRevs(prodId,revs);
+  markVoted('prod_'+prodId);
+  // Сохраняем в Firebase
+  saveProdRevToCloud(prodId, newRev);
+
+  document.getElementById('pr-name').value='';
+  document.getElementById('pr-text').value='';
+  starSel.pr=0;
+  document.querySelectorAll('#pr-stars .sp').forEach(b=>b.classList.remove('on'));
+  removeReviewPhoto('pr');
+  document.getElementById('pr-ok').style.display='block';
+  document.getElementById('pr-send').style.display='none';
+  document.getElementById('pr-already').style.display='block';
+
+  if(curProdId===prodId){
+    renderProdRevs(prodId);
+    updateProdRating(prodId);
+  }
+  renderProducts();
+}
+
+function submitShopReview(){
+  const name=document.getElementById('sr-name').value.trim();
+  const text=document.getElementById('sr-text').value.trim();
+  const stars=starSel.sr;
+  ['sr-ok','sr-err'].forEach(id=>document.getElementById(id).style.display='none');
+  if(!name||!text||!stars){ document.getElementById('sr-err').style.display='block'; return; }
+  if(voted('shop')){ document.getElementById('sr-already').style.display='block'; return; }
+
+  const revId=uid();
+  const photo=reviewPhotoData.sr||null;
+
+  const newRev={id:revId,name,stars,text,date:fmtDate(),source:'site',photo};
+  const revs=getShopRevs();
+  revs.unshift(newRev);
+  saveShopRevs(revs);
+  markVoted('shop');
+  saveShopRevToCloud(newRev);
+
+  document.getElementById('sr-name').value='';
+  document.getElementById('sr-text').value='';
+  starSel.sr=0;
+  document.querySelectorAll('#sr-stars .sp').forEach(b=>b.classList.remove('on'));
+  removeReviewPhoto('sr');
+  document.getElementById('sr-ok').style.display='block';
+  document.getElementById('sr-send').style.display='none';
+  document.getElementById('sr-already').style.display='block';
+  renderShopRevs();
+}
+
+// ══════════════════════════════════════════════════
+// УДАЛЕНИЕ (ADMIN)
+// ══════════════════════════════════════════════════
+function delProdRev(prodId,revId){
+  showConfirm('Удалить отзыв?', 'Это действие нельзя отменить.', ()=>{
+    saveProdRevs(prodId,getProdRevs(prodId).filter(r=>r.id!==revId));
+    delProdRevFromCloud(prodId, revId);
+    renderProdRevs(prodId); updateProdRating(prodId); renderProducts();
+    showToast('🗑 Отзыв удалён');
+  });
+}
+function delShopRev(revId){
+  showConfirm('Удалить отзыв?', 'Это действие нельзя отменить.', ()=>{
+    saveShopRevs(getShopRevs().filter(r=>r.id!==revId));
+    delShopRevFromCloud(revId);
+    renderShopRevs();
+    showToast('🗑 Отзыв удалён');
+  });
+}
+function deleteProduct(id){
+  const p = getProducts().find(x=>x.id===id);
+  const name = p ? p.name : 'товар';
+  showConfirm(
+    'Удалить «' + name + '»?',
+    'Отзывы на этот товар тоже удалятся. Восстановить можно кнопкой «🔄 Восстановить все товары».',
+    ()=>{
+      const isDefault = DEFAULT_PRODUCTS.find(p=>p.id===id);
+      saveExtraProducts(getExtraProducts().filter(p=>p.id!==id));
+      if(isDefault){
+        const hidden = getHidden();
+        if(!hidden.includes(id)){ hidden.push(id); saveHidden(hidden); }
+        hideProductInCloud(id);
+      } else {
+        deleteExtraProductFromCloud(id);
+      }
+      localStorage.removeItem('rev_p_'+id);
+      renderProducts();
+      showToast('🗑 «' + name + '» удалён');
+    }
+  );
+}
+
+// ══════════════════════════════════════════════════
+// ДОБАВЛЕНИЕ ТОВАРА (ADMIN)
+// ══════════════════════════════════════════════════
+function updateEmoji(v){ /* emoji updated */ }
+
+function populateCatSelect(){
+  const sel = document.getElementById('np-cat');
+  const cats = getCategories();
+  sel.innerHTML = '<option value="">Выберите категорию</option>' +
+    cats.map(c => `<option value="${c.id}">${c.photo ? '' : (c.emoji||'📦')} ${escapeHtml(c.name)}</option>`).join('');
+}
+
+function toggleAddForm(){
+  populateCatSelect();
+  document.getElementById('addForm').classList.toggle('show');
+}
+function cancelAddForm(){
+  ['np-emoji','np-name','np-sub','np-price','np-desc'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('np-cat').value='';
+  document.getElementById('np-badge').value='';
+  removePhoto();
+  document.getElementById('addForm').classList.remove('show');
+}
+
+function addProduct(){
+  const emoji = document.getElementById('np-emoji').value.trim() || (currentPhotoData ? '' : '📦');
+  const name  = document.getElementById('np-name').value.trim();
+  const sub   = document.getElementById('np-sub').value.trim();
+  const price = document.getElementById('np-price').value.trim();
+  const desc  = document.getElementById('np-desc').value.trim();
+  const cat   = document.getElementById('np-cat').value;
+  const badge = document.getElementById('np-badge').value;
+  if(!name||!price||!cat){ showToast('❌ Укажи название, цену и категорию!'); return; }
+
+  const productId = 'p_'+uid();
+  const photo = currentPhotoData || null;
+
+  const newProduct = {id:productId, emoji, name, sub, price, desc, cat, badge, photo};
+  const extra = getExtraProducts();
+  extra.push(newProduct);
+  saveExtraProducts(extra);
+  saveExtraProductToCloud(newProduct);
+  ['np-emoji','np-name','np-sub','np-price','np-desc'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('np-cat').value='';
+  document.getElementById('np-badge').value='';
+  removePhoto();
+  document.getElementById('addForm').classList.remove('show');
+  renderProducts();
+  showToast('✅ Товар добавлен!');
+}
+
+function resetProducts(){
+  showConfirm(
+    'Восстановить все товары?',
+    'Удалённые стандартные товары вернутся. Добавленные вами товары удалятся — везде, у всех покупателей.',
+    async ()=>{
+      const extra = getExtraProducts();
+      extra.forEach(p => localStorage.removeItem('rev_p_'+p.id));
+      localStorage.removeItem('neko_extra_products');
+      localStorage.removeItem('neko_hidden');
+      renderProducts();
+      showToast('🔄 Восстанавливаем... (в т.ч. в облаке)');
+      await wipeCloudCollection('products');
+      await wipeCloudCollection('hidden_products');
+      showToast('🔄 Все товары восстановлены');
+    }
+  );
+}
+
+function resetCategories(){
+  showConfirm(
+    'Восстановить стандартные категории?',
+    'Вернутся: Лапша, Снеки, Сладости, Соевое мясо, Соусы. Добавленные тобой категории удалятся — везде, у всех покупателей.',
+    async ()=>{
+      localStorage.removeItem('neko_categories');
+      if(activeCat !== 'all') activeCat = 'all';
+      renderFilters();
+      renderProducts();
+      showToast('🔄 Восстанавливаем... (в т.ч. в облаке)');
+      await wipeCloudCollection('categories');
+      showToast('🔄 Категории восстановлены');
+    }
+  );
+}
+
+// ══════════════════════════════════════════════════
+// YML-ФИД ДЛЯ 2ГИС
+// Собираем каталог из тех же данных, что уже есть на сайте
+// (Firestore products/categories), и отдаём файлом для загрузки
+// в личном кабинете 2ГИС: Товары и услуги → Указать URL/Загрузить файл.
+// ══════════════════════════════════════════════════
+function escapeXml(str){
+  if(str===null || str===undefined) return '';
+  return String(str)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&apos;');
+}
+
+// Наша цена хранится как текст ("от 90 ₽") — YML требует голое число.
+// Достаём первое число из строки; если не нашли — считаем, что цену
+// разобрать не удалось, и товар в фид не попадёт.
+function parsePriceNumber(priceStr){
+  if(!priceStr) return null;
+  const match = String(priceStr).match(/\d+([.,]\d+)?/);
+  if(!match) return null;
+  return match[0].replace(',', '.');
+}
+
+function buildYmlFeed(){
+  const products = getProducts();
+  const categories = getCategories();
+  const siteBase = window.location.href.split('#')[0];
+  const dateStr = new Date().toISOString().slice(0,16).replace('T',' ');
+  const skipped = [];
+
+  let categoriesXml = '';
+  categories.forEach(c=>{
+    categoriesXml += `      <category id="${escapeXml(c.id)}">${escapeXml(c.name)}</category>\n`;
+  });
+
+  let offersXml = '';
+  products.forEach(p=>{
+    const priceNum = parsePriceNumber(p.price);
+    if(!priceNum){ skipped.push(p.name); return; }
+    offersXml += `      <offer id="${escapeXml(p.id)}" available="true">\n`;
+    offersXml += `        <name>${escapeXml(p.name)}</name>\n`;
+    offersXml += `        <url>${escapeXml(siteBase+'#p='+p.id)}</url>\n`;
+    offersXml += `        <price>${priceNum}</price>\n`;
+    offersXml += `        <currencyId>RUB</currencyId>\n`;
+    if(p.cat) offersXml += `        <categoryId>${escapeXml(p.cat)}</categoryId>\n`;
+    // 2ГИС должен скачать фото по ссылке — base64 (как сейчас хранятся
+    // фото товаров) в <picture> не годится, поэтому подставляем только
+    // настоящую http(s)-ссылку, если она вдруг появится в будущем.
+    if(p.photo && p.photo.startsWith('http')) offersXml += `        <picture>${escapeXml(p.photo)}</picture>\n`;
+    const descText = [p.sub, p.desc].filter(Boolean).join('. ');
+    if(descText) offersXml += `        <description>${escapeXml(descText)}</description>\n`;
+    offersXml += `      </offer>\n`;
+  });
+
+  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+  xml += `<yml_catalog date="${dateStr}">\n  <shop>\n`;
+  xml += '    <name>Neko Market</name>\n    <company>Neko Market</company>\n';
+  xml += `    <url>${escapeXml(siteBase)}</url>\n`;
+  xml += '    <currencies>\n      <currency id="RUB" rate="1"/>\n    </currencies>\n';
+  xml += '    <categories>\n'+categoriesXml+'    </categories>\n';
+  xml += '    <offers>\n'+offersXml+'    </offers>\n';
+  xml += '  </shop>\n</yml_catalog>\n';
+
+  return {xml, skipped};
+}
+
+function exportYmlFeed(){
+  const {xml, skipped} = buildYmlFeed();
+
+  const blob = new Blob([xml], {type:'application/xml;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'neko-market-2gis.yml';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  if(skipped.length){
+    showToast('⚠️ Файл скачан, но без цены пропущено: '+skipped.length);
+    console.log('Пропущены при экспорте YML (не распознана цена):', skipped);
+  } else {
+    showToast('✅ YML-файл для 2ГИС скачан');
+  }
+}
+
+// ══════════════════════════════════════════════════
+// ПОДЕЛИТЬСЯ
+// ══════════════════════════════════════════════════
+function shareProduct(){
+  const p=getProducts().find(x=>x.id===curProdId);
+  const title=p?p.emoji+' '+p.name:'Neko Market';
+  const text=p?p.name+' — '+p.price+' | Neko Market, ул. Плеханова 43, Челябинск':'Neko Market';
+  const url=window.location.href.split('#')[0]+'#p='+curProdId;
+  if(navigator.share){ navigator.share({title,text,url}).catch(()=>{}); return; }
+  const ta=document.createElement('textarea');
+  ta.value=text+'\n'+url;
+  ta.style.cssText='position:fixed;opacity:0;top:0;left:0';
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); }catch(e){}
+  document.body.removeChild(ta);
+  const btn=document.getElementById('shareBtn');
+  btn.innerHTML='✓ Скопировано!'; btn.classList.add('copied');
+  showToast('✓ Ссылка скопирована!');
+  setTimeout(()=>{ btn.innerHTML='🔗 Поделиться'; btn.classList.remove('copied'); },2500);
+}
+
+// ══════════════════════════════════════════════════
+// ТОСТ
+// ══════════════════════════════════════════════════
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+// ══════════════════════════════════════════════════
+// ТАЙМЕР АКЦИИ
+// ══════════════════════════════════════════════════
+(function startTimer(){
+  // Дедлайн сохраняется в localStorage — один и тот же до истечения
+  let deadline = localStorage.getItem('promo_deadline');
+  if(!deadline){
+    const end=new Date(); const d=end.getDay(), till=d===0?7:7-d;
+    end.setDate(end.getDate()+till); end.setHours(23,59,59,0);
+    deadline=end.toISOString(); localStorage.setItem('promo_deadline',deadline);
+  }
+  const end=new Date(deadline);
+  function tick(){
+    const diff=end-new Date();
+    if(diff<=0){
+      ['t-h','t-m','t-s'].forEach(id=>document.getElementById(id).textContent='00');
+      // Обновляем дедлайн на следующую неделю
+      const next=new Date(); const d=next.getDay(), till=d===0?7:7-d;
+      next.setDate(next.getDate()+till); next.setHours(23,59,59,0);
+      localStorage.setItem('promo_deadline',next.toISOString()); return;
+    }
+    const h=Math.floor(diff/3600000), m=Math.floor(diff%3600000/60000), s=Math.floor(diff%60000/1000);
+    document.getElementById('t-h').textContent=String(h).padStart(2,'0');
+    document.getElementById('t-m').textContent=String(m).padStart(2,'0');
+    document.getElementById('t-s').textContent=String(s).padStart(2,'0');
+  }
+  tick(); setInterval(tick,1000);
+})();
+
+// ══════════════════════════════════════════════════
+// АДМИНИСТРАТОР
+// ══════════════════════════════════════════════════
+function openAdmin(){
+  if(document.body.classList.contains('admin-mode')){ adminLogout(); return; }
+  if(isLockedOut()){ showLockoutMessage(); return; }
+  document.getElementById('loginOverlay').classList.add('show');
+  setTimeout(()=>document.getElementById('loginInput').focus(),100);
+}
+function closeLogin(){
+  document.getElementById('loginOverlay').classList.remove('show');
+  document.getElementById('loginInput').value='';
+  document.getElementById('loginErr').style.display='none';
+}
+
+// ══════════════════════════════════════════════════
+// ЗАЩИТА ОТ ПЕРЕБОРА ПАРОЛЯ
+// ══════════════════════════════════════════════════
+const MAX_ATTEMPTS = 5;
+const LOCKOUT_MINUTES = 10;
+
+function getAttempts(){
+  return parseInt(localStorage.getItem('login_attempts') || '0');
+}
+function setAttempts(n){
+  localStorage.setItem('login_attempts', String(n));
+}
+function isLockedOut(){
+  const until = localStorage.getItem('login_lockout_until');
+  if(!until) return false;
+  if(Date.now() < parseInt(until)) return true;
+  // Время блокировки прошло — сбрасываем
+  localStorage.removeItem('login_lockout_until');
+  setAttempts(0);
+  return false;
+}
+function showLockoutMessage(){
+  const until = parseInt(localStorage.getItem('login_lockout_until'));
+  const minsLeft = Math.ceil((until - Date.now()) / 60000);
+  showToast('🔒 Слишком много попыток. Подождите ' + minsLeft + ' мин.');
+}
+
+async function tryLogin(){
+  if(isLockedOut()){ closeLogin(); showLockoutMessage(); return; }
+  const password = document.getElementById('loginInput').value;
+  if(!password) return;
+
+  const ready = await waitForFirebase();
+  if(!ready || !window.auth){
+    document.getElementById('loginErr').textContent = '❌ Не удалось подключиться, попробуй ещё раз';
+    document.getElementById('loginErr').style.display='block';
+    return;
+  }
+
+  try{
+    // Пароль уходит напрямую в Firebase и сверяется на его стороне —
+    // в этом файле он никогда не хранится и не сравнивается строкой.
+    await window.fbSignIn(window.auth, ADMIN_EMAIL, password);
+    setAttempts(0);
+    localStorage.removeItem('login_lockout_until');
+    closeLogin();
+    // Обновление UI (admin-mode и т.д.) произойдёт через adminAuthChanged
+  }catch(e){
+    const attempts = getAttempts() + 1;
+    setAttempts(attempts);
+    if(attempts >= MAX_ATTEMPTS){
+      const until = Date.now() + LOCKOUT_MINUTES * 60000;
+      localStorage.setItem('login_lockout_until', String(until));
+      closeLogin();
+      showToast('🔒 Слишком много попыток. Блокировка на ' + LOCKOUT_MINUTES + ' мин.');
+    } else {
+      const left = MAX_ATTEMPTS - attempts;
+      document.getElementById('loginErr').textContent = '❌ Неверный пароль. Осталось попыток: ' + left;
+      document.getElementById('loginErr').style.display='block';
+      document.getElementById('loginInput').value='';
+    }
+  }
+}
+async function adminLogout(){
+  if(window.auth) await window.fbSignOut(window.auth);
+  document.getElementById('addForm').classList.remove('show');
+  document.getElementById('catManageForm').classList.remove('show');
+  // Снятие admin-mode и перерисовка произойдут через adminAuthChanged
+}
+
+// Единая точка синхронизации UI с реальным статусом входа в Firebase Auth —
+// вызывается и по событию adminAuthChanged, и один раз явно из INIT —
+// на случай, если сеть отработала быстрее, чем этот файл успел подписаться.
+function syncAdminUI(){
+  if(window.isAdminAuthed){
+    document.body.classList.add('admin-mode');
+    document.getElementById('adminBar').classList.add('show');
+    document.getElementById('adminTabBtn').textContent='✅ Админ';
+  } else {
+    document.body.classList.remove('admin-mode');
+    document.getElementById('adminBar').classList.remove('show');
+    document.getElementById('adminTabBtn').textContent='⚙️';
+  }
+  renderFilters(); renderProducts(); renderShopRevs();
+  if(curProdId) renderProdRevs(curProdId);
+}
+window.addEventListener('adminAuthChanged', syncAdminUI);
+
+
+
+
+
+// ══════════════════════════════════════════════════
+// ФОТО В ОТЗЫВАХ
+// ══════════════════════════════════════════════════
+const reviewPhotoData = {pr: null, sr: null}; // сжатый base64 — и превью, и то, что реально сохранится
+
+function triggerReviewPhoto(prefix){
+  document.getElementById(prefix+'PhotoInput').click();
+}
+
+async function handleReviewPhoto(input, prefix){
+  const file = input.files[0];
+  if(!file) return;
+  if(file.size > 15 * 1024 * 1024){
+    showToast('❌ Фото слишком большое! Максимум 15МБ');
+    return;
+  }
+  showToast('⏳ Обрабатываем фото...');
+  try{
+    reviewPhotoData[prefix] = await compressImageToBase64(file, 700, 400000);
+    const preview = document.getElementById(prefix+'PhotoPreview');
+    const area = document.getElementById(prefix+'PhotoArea');
+    const placeholder = document.getElementById(prefix+'PhotoPlaceholder');
+    preview.src = reviewPhotoData[prefix];
+    preview.classList.add('show');
+    area.classList.add('has-photo');
+    placeholder.style.display = 'none';
+  }catch(e){
+    console.log('Compress error:', e);
+    showToast('❌ Не удалось обработать фото');
+  }
+}
+
+function removeReviewPhoto(prefix){
+  reviewPhotoData[prefix] = null;
+  const preview = document.getElementById(prefix+'PhotoPreview');
+  const area = document.getElementById(prefix+'PhotoArea');
+  const placeholder = document.getElementById(prefix+'PhotoPlaceholder');
+  preview.src = '';
+  preview.classList.remove('show');
+  area.classList.remove('has-photo');
+  placeholder.style.display = '';
+  document.getElementById(prefix+'PhotoInput').value = '';
+}
+
+function lightboxPhoto(src){
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;cursor:pointer;';
+  overlay.innerHTML = '<img src="'+src+'" style="max-width:100%;max-height:100%;border-radius:12px;object-fit:contain;">';
+  overlay.onclick = () => document.body.removeChild(overlay);
+  document.body.appendChild(overlay);
+}
+
+
+// ══════════════════════════════════════════════════
+// РЕДАКТИРОВАНИЕ КАТЕГОРИИ ТОВАРА
+// ══════════════════════════════════════════════════
+let catEditProductId = null;
+
+function openCatEdit(productId){
+  const p = getProducts().find(x => x.id === productId);
+  if(!p) return;
+  catEditProductId = productId;
+  document.getElementById('catEditProdName').textContent = p.emoji + ' ' + p.name;
+  const cats = getCategories();
+  document.getElementById('catEditList').innerHTML = cats.map(c => {
+    const icon = c.photo ? `<img src="${c.photo}" style="width:24px;height:24px;border-radius:6px;object-fit:cover;vertical-align:middle;margin-right:4px;">` : (c.emoji||'📦');
+    return `<div class="cat-edit-opt ${c.id===p.cat?'selected':''}" data-cat="${c.id}" onclick="selectCatEdit('${c.id}')">${icon} ${escapeHtml(c.name)}</div>`;
+  }).join('');
+  document.getElementById('catEditOverlay').classList.add('show');
+}
+
+function closeCatEdit(){
+  document.getElementById('catEditOverlay').classList.remove('show');
+  catEditProductId = null;
+}
+
+function selectCatEdit(newCat){
+  if(!catEditProductId) return;
+
+  // Если товар стандартный — переносим его в extra с новой категорией
+  const defaultProd = DEFAULT_PRODUCTS.find(p => p.id === catEditProductId);
+  if(defaultProd){
+    const hidden = getHidden();
+    if(!hidden.includes(catEditProductId)){ hidden.push(catEditProductId); saveHidden(hidden); }
+    hideProductInCloud(catEditProductId);
+    const movedProduct = {...defaultProd, cat: newCat};
+    const extra = getExtraProducts();
+    extra.push(movedProduct);
+    saveExtraProducts(extra);
+    saveExtraProductToCloud(movedProduct);
+  } else {
+    // Это уже добавленный товар — просто меняем категорию
+    const extra = getExtraProducts();
+    const idx = extra.findIndex(p => p.id === catEditProductId);
+    if(idx !== -1){
+      extra[idx].cat = newCat;
+      saveExtraProducts(extra);
+      saveExtraProductToCloud(extra[idx]);
+    }
+  }
+
+  closeCatEdit();
+  renderProducts();
+  showToast('✅ Категория обновлена!');
+}
+
+
+// ══════════════════════════════════════════════════
+// ФОТО КАТЕГОРИИ
+// ══════════════════════════════════════════════════
+let catPhotoData = null; // сжатый base64 — и превью, и то, что реально сохранится
+
+function triggerCatPhoto(){
+  document.getElementById('catPhotoInput').click();
+}
+async function handleCatPhoto(input){
+  const file = input.files[0];
+  if(!file) return;
+  if(file.size > 15 * 1024 * 1024){ showToast('❌ Фото слишком большое! Максимум 15МБ'); return; }
+  showToast('⏳ Обрабатываем фото...');
+  try{
+    catPhotoData = await compressImageToBase64(file, 400, 200000);
+    const prev = document.getElementById('catPhotoPreview');
+    const area = document.getElementById('catPhotoArea');
+    const icon = document.getElementById('catPhotoIcon');
+    prev.src = catPhotoData;
+    prev.classList.add('show');
+    area.classList.add('has-photo');
+    icon.style.display = 'none';
+  }catch(e){
+    console.log('Compress error:', e);
+    showToast('❌ Не удалось обработать фото');
+  }
+}
+function removeCatPhoto(){
+  catPhotoData = null;
+  const prev = document.getElementById('catPhotoPreview');
+  const area = document.getElementById('catPhotoArea');
+  const icon = document.getElementById('catPhotoIcon');
+  prev.src = ''; prev.classList.remove('show');
+  area.classList.remove('has-photo');
+  icon.style.display = '';
+  document.getElementById('catPhotoInput').value = '';
+}
+
+// ══════════════════════════════════════════════════
+// УПРАВЛЕНИЕ СПИСКОМ КАТЕГОРИЙ (ADMIN)
+// ══════════════════════════════════════════════════
+function toggleCatManageForm(){
+  const form = document.getElementById('catManageForm');
+  form.classList.toggle('show');
+  if(form.classList.contains('show')) renderCatManageList();
+}
+
+function renderCatManageList(){
+  const cats = getCategories();
+  const el = document.getElementById('catManageList');
+  if(!cats.length){
+    el.innerHTML = '<div class="cat-manage-empty">Категорий пока нет</div>';
+    return;
+  }
+  el.innerHTML = cats.map(c => {
+    const usedCount = getProducts().filter(p => p.cat === c.id).length;
+    const thumb = c.photo
+      ? `<img class="cat-manage-emoji-img" src="${c.photo}" alt="${escapeHtml(c.name)}">`
+      : `<span class="cat-manage-emoji">${c.emoji||'📦'}</span>`;
+    return `<div class="cat-manage-row">
+      ${thumb}
+      <span class="cat-manage-name">${escapeHtml(c.name)} ${usedCount ? '<span style="color:var(--ink3);font-weight:400;">('+usedCount+' тов.)</span>' : ''}</span>
+      <button class="cat-manage-del" onclick="deleteCategory('${c.id}')">Удалить</button>
+    </div>`;
+  }).join('');
+}
+
+function addCategory(){
+  const emoji = document.getElementById('newCatEmoji').value.trim() || (catPhotoData ? '' : '📦');
+  const name = document.getElementById('newCatName').value.trim();
+  if(!name){ showToast('❌ Укажи название категории'); return; }
+
+  const catId = 'cat_' + uid();
+  const photo = catPhotoData || null;
+
+  const newCat = {id:catId, emoji, name, photo};
+  const cats = getCategories();
+  cats.push(newCat);
+  saveCategories(cats);
+  saveCategoryToCloud(newCat);
+
+  document.getElementById('newCatEmoji').value = '';
+  document.getElementById('newCatName').value = '';
+  removeCatPhoto();
+
+  renderCatManageList();
+  renderFilters();
+  showToast('✅ Категория добавлена!');
+}
+
+function deleteCategory(catId){
+  const usedCount = getProducts().filter(p => p.cat === catId).length;
+  const sub = usedCount
+    ? 'В этой категории ' + usedCount + ' товар(ов). Они останутся, но категория у них пропадёт.'
+    : 'Эта категория не используется ни одним товаром.';
+  showConfirm('Удалить категорию?', sub, () => {
+    const cats = getCategories().filter(c => c.id !== catId);
+    saveCategories(cats);
+    deleteCategoryFromCloud(catId);
+    if(activeCat === catId) activeCat = 'all';
+    renderCatManageList();
+    renderFilters();
+    renderProducts();
+    showToast('🗑 Категория удалена');
+  });
+}
+
+
+// ══════════════════════════════════════════════════
+// ПОЧИНКА СТАРЫХ ОТЗЫВОВ (рассинхронизированных по id)
+// ══════════════════════════════════════════════════
+async function wipeOldReviews(){
+  showConfirm(
+    'Починить старые отзывы?',
+    'Удалит ВСЕ отзывы о магазине из облака (включая невидимые баги) и заново сохранит только те, что видны сейчас на сайте. Отзывы на товары не трогает.',
+    async () => {
+      const ready = await waitForFirebase();
+      if(!ready || !window.db){ showToast('❌ Firebase не подключился, попробуйте позже'); return; }
+      try {
+        // 1. Получаем ВСЕ документы в коллекции (по их настоящим id из облака)
+        const snap = await window.fbGetDocs(window.fbCollection(window.db, 'reviews_shop'));
+        const cloudIds = [];
+        snap.forEach(d => cloudIds.push(d.id));
+
+        // 2. Удаляем все документы в облаке по их настоящим id
+        for(const cid of cloudIds){
+          await window.fbDeleteDoc(window.fbDoc(window.db, 'reviews_shop', cid));
+        }
+
+        // 3. Заново сохраняем то, что сейчас в локальном хранилище — уже с правильными id
+        const localRevs = getShopRevs();
+        for(const rev of localRevs){
+          await window.fbSetDoc(window.fbDoc(window.db, 'reviews_shop', rev.id), rev);
+        }
+
+        showToast('✅ Готово! Отзывы магазина синхронизированы (' + localRevs.length + ' шт.)');
+        renderShopRevs();
+      } catch(e) {
+        console.log('Wipe error:', e);
+        showToast('❌ Ошибка синхронизации, попробуйте ещё раз');
+      }
+    }
+  );
+}
+
+// ══════════════════════════════════════════════════
+// ЗАГРУЗКА ФОТО ТОВАРА
+// ══════════════════════════════════════════════════
+let currentPhotoData = null; // сжатый base64 — и превью, и то, что реально сохранится
+
+function triggerPhotoUpload(){
+  document.getElementById('photoInput').click();
+}
+
+async function handlePhoto(input){
+  const file = input.files[0];
+  if(!file) return;
+  if(file.size > 15 * 1024 * 1024){
+    showToast('❌ Фото слишком большое! Максимум 15МБ');
+    return;
+  }
+  showToast('⏳ Обрабатываем фото...');
+  try{
+    currentPhotoData = await compressImageToBase64(file, 800, 500000);
+    const preview = document.getElementById('photoPreview');
+    const area = document.getElementById('photoUploadArea');
+    const placeholder = document.getElementById('photoPlaceholder');
+    preview.src = currentPhotoData;
+    preview.classList.add('show');
+    area.classList.add('has-photo');
+    placeholder.style.display = 'none';
+  }catch(e){
+    console.log('Compress error:', e);
+    showToast('❌ Не удалось обработать фото');
+  }
+}
+
+function removePhoto(){
+  currentPhotoData = null;
+  const preview = document.getElementById('photoPreview');
+  const area = document.getElementById('photoUploadArea');
+  const placeholder = document.getElementById('photoPlaceholder');
+  preview.src = '';
+  preview.classList.remove('show');
+  area.classList.remove('has-photo');
+  placeholder.style.display = '';
+  document.getElementById('photoInput').value = '';
+}
+
+// ══════════════════════════════════════════════════
+// ОТЗЫВЫ ИЗ 2ГИС
+// ══════════════════════════════════════════════════
+let gisStars = 0;
+
+function toggleGisForm(){
+  document.getElementById('gisForm').classList.toggle('show');
+  initGisStars();
+}
+
+function initGisStars(){
+  gisStars = 0;
+  const btns = document.querySelectorAll('#gis-stars .gis-sp');
+  btns.forEach(b => {
+    b.classList.remove('on');
+    b.onclick = () => { gisStars = +b.dataset.v; btns.forEach(x => x.classList.toggle('on', +x.dataset.v <= gisStars)); };
+    b.onmouseenter = () => btns.forEach(x => x.classList.toggle('on', +x.dataset.v <= +b.dataset.v));
+    b.onmouseleave = () => btns.forEach(x => x.classList.toggle('on', +x.dataset.v <= gisStars));
+  });
+}
+
+function submitGisReview(){
+  const name = document.getElementById('gis-name').value.trim();
+  const date = document.getElementById('gis-date').value.trim();
+  const text = document.getElementById('gis-text').value.trim();
+  if(!name || !text || !gisStars || !date){ showToast('❌ Заполни все поля!'); return; }
+
+  const newRev = {id: uid(), name, stars: gisStars, text, date, source: '2gis'};
+  const revs = getShopRevs();
+  revs.unshift(newRev);
+  saveShopRevs(revs);
+  saveShopRevToCloud(newRev);
+
+  // Очищаем форму
+  document.getElementById('gis-name').value = '';
+  document.getElementById('gis-date').value = '';
+  document.getElementById('gis-text').value = '';
+  gisStars = 0;
+  document.querySelectorAll('#gis-stars .gis-sp').forEach(b => b.classList.remove('on'));
+  document.getElementById('gisForm').classList.remove('show');
+
+  renderShopRevs();
+  showToast('✅ Отзыв из 2ГИС добавлен!');
+}
+
+// ══════════════════════════════════════════════════
+// FIREBASE — ОТЗЫВЫ В ОБЛАКЕ
+// ══════════════════════════════════════════════════
+
+// Ждём пока Firebase будет готов (макс 3 сек), чтобы не терять отзывы
+function waitForFirebase(maxMs = 3000){
+  return new Promise(resolve => {
+    if(window.db){ resolve(true); return; }
+    const start = Date.now();
+    const check = setInterval(() => {
+      if(window.db){ clearInterval(check); resolve(true); }
+      else if(Date.now() - start > maxMs){ clearInterval(check); resolve(false); }
+    }, 100);
+  });
+}
+
+// ══════════════════════════════════════════════════
+// СЖАТИЕ ФОТО (Canvas)
+// Firebase Storage требует платный тариф Blaze, поэтому фото храним
+// прямо в Firestore-документе как base64 — а значит, обязаны уложиться
+// в лимит 1 МБ на документ. Сжимаем и уменьшаем на лету: сначала режем
+// размер картинки, потом, если всё ещё много — снижаем качество JPEG,
+// а если и это не помогает — ещё уменьшаем размер, пока не впишемся.
+function compressImageToBase64(file, maxDim, maxBytes){
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        let width = img.width, height = img.height;
+        if(width > height && width > maxDim){
+          height = Math.round(height * maxDim / width);
+          width = maxDim;
+        } else if(height >= width && height > maxDim){
+          width = Math.round(width * maxDim / height);
+          height = maxDim;
+        }
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = width; canvas.height = height;
+        ctx.drawImage(img, 0, 0, width, height);
+
+        let quality = 0.8;
+        let dataUrl = canvas.toDataURL('image/jpeg', quality);
+        while(dataUrl.length > maxBytes && quality > 0.3){
+          quality -= 0.1;
+          dataUrl = canvas.toDataURL('image/jpeg', quality);
+        }
+        while(dataUrl.length > maxBytes && width > 150){
+          width = Math.round(width * 0.85);
+          height = Math.round(height * 0.85);
+          canvas.width = width; canvas.height = height;
+          ctx.clearRect(0, 0, width, height);
+          ctx.drawImage(img, 0, 0, width, height);
+          dataUrl = canvas.toDataURL('image/jpeg', 0.7);
+        }
+        resolve(dataUrl);
+      };
+      img.onerror = () => reject(new Error('Не удалось загрузить изображение'));
+      img.src = e.target.result;
+    };
+    reader.onerror = () => reject(new Error('Не удалось прочитать файл'));
+    reader.readAsDataURL(file);
+  });
+}
+
+// Загрузить отзывы на товар из Firebase
+async function loadProdRevs(productId) {
+  await waitForFirebase();
+  if(!window.db) return;
+  try {
+    const snap = await window.fbGetDocs(window.fbCollection(window.db, 'reviews_' + productId));
+    const revs = [];
+    snap.forEach(d => revs.push({id: d.id, ...d.data()}));
+    revs.sort((a,b)=>parseRuDate(b.date)-parseRuDate(a.date));
+    // Сохраняем локально для быстрого доступа
+    localStorage.setItem('rev_p_' + productId, JSON.stringify(revs));
+    return revs;
+  } catch(e) { return getProdRevs(productId); }
+}
+
+// Сохранить отзыв на товар в Firebase
+async function saveProdRevToCloud(productId, rev) {
+  const ready = await waitForFirebase();
+  if(!ready || !window.db){ showToast('⚠️ Отзыв сохранён локально, синхронизация позже'); return; }
+  try {
+    // Используем setDoc с явным id, чтобы id в облаке совпадал с локальным id —
+    // иначе при удалении локальная и облачная копии рассинхронизируются
+    await window.fbSetDoc(window.fbDoc(window.db, 'reviews_' + productId, rev.id), rev);
+  } catch(e) { console.log('Firebase error:', e); }
+}
+
+// Удалить отзыв на товар из Firebase
+async function delProdRevFromCloud(productId, revId) {
+  await waitForFirebase();
+  if(!window.db) return;
+  try {
+    await window.fbDeleteDoc(window.fbDoc(window.db, 'reviews_' + productId, revId));
+  } catch(e) { console.log('Firebase error:', e); }
+}
+
+// Загрузить отзывы о магазине из Firebase
+async function loadShopRevs() {
+  await waitForFirebase();
+  if(!window.db) return;
+  try {
+    const snap = await window.fbGetDocs(window.fbCollection(window.db, 'reviews_shop'));
+    const revs = [];
+    snap.forEach(d => revs.push({id: d.id, ...d.data()}));
+    revs.sort((a,b)=>parseRuDate(b.date)-parseRuDate(a.date));
+    if(revs.length > 0) localStorage.setItem('rev_shop', JSON.stringify(revs));
+    return revs;
+  } catch(e) { return getShopRevs(); }
+}
+
+// Сохранить отзыв о магазине в Firebase
+async function saveShopRevToCloud(rev) {
+  const ready = await waitForFirebase();
+  if(!ready || !window.db){ showToast('⚠️ Отзыв сохранён локально, синхронизация позже'); return; }
+  try {
+    // Используем setDoc с явным id, чтобы id в облаке совпадал с локальным id
+    await window.fbSetDoc(window.fbDoc(window.db, 'reviews_shop', rev.id), rev);
+  } catch(e) { console.log('Firebase error:', e); }
+}
+
+// Удалить отзыв о магазине из Firebase
+async function delShopRevFromCloud(revId) {
+  await waitForFirebase();
+  if(!window.db) return;
+  try {
+    await window.fbDeleteDoc(window.fbDoc(window.db, 'reviews_shop', revId));
+  } catch(e) { console.log('Firebase error:', e); }
+}
+
+// ══════════════════════════════════════════════════
+// FIREBASE — ТОВАРЫ, КАТЕГОРИИ, СКРЫТЫЕ СТАНДАРТНЫЕ ТОВАРЫ
+// Та же логика, что и для отзывов: локально — для мгновенного
+// отображения при загрузке, в облаке — чтобы изменения видели
+// ВСЕ покупатели, а не только тот браузер, где их сделали.
+// ══════════════════════════════════════════════════
+
+// Удалить все документы коллекции целиком (используется в "Восстановить...")
+async function wipeCloudCollection(colName){
+  const ready = await waitForFirebase();
+  if(!ready || !window.db) return;
+  try{
+    const snap = await window.fbGetDocs(window.fbCollection(window.db, colName));
+    for(const d of snap.docs){
+      await window.fbDeleteDoc(window.fbDoc(window.db, colName, d.id));
+    }
+  }catch(e){ console.log('Firebase wipe error:', e); }
+}
+
+// ---- Товары, добавленные админом (коллекция 'products') ----
+async function loadExtraProductsFromCloud(){
+  await waitForFirebase();
+  if(!window.db) return null;
+  try{
+    const snap = await window.fbGetDocs(window.fbCollection(window.db,'products'));
+    const list = [];
+    snap.forEach(d=>list.push({id:d.id, ...d.data()}));
+    localStorage.setItem('neko_extra_products', JSON.stringify(list));
+    return list;
+  }catch(e){ console.log('Firebase error:', e); return null; }
+}
+async function saveExtraProductToCloud(p){
+  const ready = await waitForFirebase();
+  if(!ready || !window.db){ showToast('⚠️ Товар сохранён локально, синхронизация позже'); return; }
+  try{
+    const {id, ...data} = p;
+    await window.fbSetDoc(window.fbDoc(window.db,'products',id), data);
+  }catch(e){ console.log('Firebase error:', e); }
+}
+async function deleteExtraProductFromCloud(id){
+  await waitForFirebase();
+  if(!window.db) return;
+  try{ await window.fbDeleteDoc(window.fbDoc(window.db,'products',id)); }
+  catch(e){ console.log('Firebase error:', e); }
+}
+
+// ---- Скрытые стандартные товары (коллекция 'hidden_products', наличие документа = товар скрыт) ----
+async function loadHiddenFromCloud(){
+  await waitForFirebase();
+  if(!window.db) return null;
+  try{
+    const snap = await window.fbGetDocs(window.fbCollection(window.db,'hidden_products'));
+    const list = [];
+    snap.forEach(d=>list.push(d.id));
+    localStorage.setItem('neko_hidden', JSON.stringify(list));
+    return list;
+  }catch(e){ console.log('Firebase error:', e); return null; }
+}
+async function hideProductInCloud(id){
+  const ready = await waitForFirebase();
+  if(!ready || !window.db) return;
+  try{ await window.fbSetDoc(window.fbDoc(window.db,'hidden_products',id), {hidden:true}); }
+  catch(e){ console.log('Firebase error:', e); }
+}
+
+// ---- Категории (коллекция 'categories') ----
+async function loadCategoriesFromCloud(){
+  await waitForFirebase();
+  if(!window.db) return null;
+  try{
+    const snap = await window.fbGetDocs(window.fbCollection(window.db,'categories'));
+    const list = [];
+    snap.forEach(d=>list.push({id:d.id, ...d.data()}));
+    if(list.length > 0) localStorage.setItem('neko_categories', JSON.stringify(list));
+    return list;
+  }catch(e){ console.log('Firebase error:', e); return null; }
+}
+async function saveCategoryToCloud(c){
+  const ready = await waitForFirebase();
+  if(!ready || !window.db){ showToast('⚠️ Категория сохранена локально, синхронизация позже'); return; }
+  try{
+    const {id, ...data} = c;
+    await window.fbSetDoc(window.fbDoc(window.db,'categories',id), data);
+  }catch(e){ console.log('Firebase error:', e); }
+}
+async function deleteCategoryFromCloud(id){
+  await waitForFirebase();
+  if(!window.db) return;
+  try{ await window.fbDeleteDoc(window.fbDoc(window.db,'categories',id)); }
+  catch(e){ console.log('Firebase error:', e); }
+}
+
+// ---- Разовая миграция: если в облаке ещё пусто, а локально уже что-то
+// накопилось (с версии сайта до этого исправления) — заливаем в облако,
+// чтобы не потерять то, что уже было добавлено через админку раньше ----
+async function migrateLocalToCloudIfNeeded(){
+  const hasLocalExtra = getExtraProducts().length > 0;
+  const hasLocalHidden = getHidden().length > 0;
+  const hasLocalCats = !!localStorage.getItem('neko_categories');
+  // Обычному покупателю (без локальных данных админки) в облако лезть незачем — экономим чтения Firebase
+  if(!hasLocalExtra && !hasLocalHidden && !hasLocalCats) return;
+
+  const ready = await waitForFirebase();
+  if(!ready || !window.db) return;
+  try{
+    if(hasLocalExtra){
+      const prodSnap = await window.fbGetDocs(window.fbCollection(window.db,'products'));
+      if(prodSnap.empty){
+        for(const p of getExtraProducts()){ await saveExtraProductToCloud(p); }
+      }
+    }
+    if(hasLocalHidden){
+      const hiddenSnap = await window.fbGetDocs(window.fbCollection(window.db,'hidden_products'));
+      if(hiddenSnap.empty){
+        for(const id of getHidden()){ await hideProductInCloud(id); }
+      }
+    }
+    if(hasLocalCats){
+      const catSnap = await window.fbGetDocs(window.fbCollection(window.db,'categories'));
+      if(catSnap.empty){
+        const localCats = JSON.parse(localStorage.getItem('neko_categories'));
+        for(const c of localCats){ await saveCategoryToCloud(c); }
+      }
+    }
+  }catch(e){ console.log('Firebase migration error:', e); }
+}
+
+// INIT
+renderFilters();
+renderProducts();
+renderShopRating();
+// На случай, если Firebase Auth успел определить статус входа раньше,
+// чем этот файл подключил обработчик adminAuthChanged
+if(window.isAdminAuthed !== undefined) syncAdminUI();
+
+// Сначала (один раз) поднимаем в облако то, что могло накопиться локально,
+// потом подтягиваем актуальное состояние из облака и перерисовываем —
+// теперь товары и категории видят все покупатели, а не только этот браузер.
+migrateLocalToCloudIfNeeded().then(()=>{
+  return Promise.all([loadExtraProductsFromCloud(), loadHiddenFromCloud(), loadCategoriesFromCloud()]);
+}).then(()=>{
+  renderFilters();
+  renderProducts();
 });
-window.addEventListener('scroll', () => {
-  document.getElementById('scrollTopBtn').style.display = window.scrollY > 300 ? 'flex' : 'none';
+
+// Подтягиваем актуальные отзывы о магазине из облака — чтобы рейтинг
+// в шапке на главной был честным даже без захода на вкладку "Отзывы"
+loadShopRevs().then(revs => {
+  if(revs && revs.length > 0) saveShopRevs(revs);
+  renderShopRating();
 });
 </script>
 </body>
